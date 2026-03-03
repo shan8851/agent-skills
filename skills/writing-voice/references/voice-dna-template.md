@@ -45,3 +45,7 @@ Before returning output:
 - avoids banned phrases
 - follows formatting rules
 - preserves intent and CTA
+- list-heavy sections converted to prose when better
+- unnecessary emoji removed
+- em dashes removed if disallowed by voice
+- headings normalized away from generic title case when needed
