@@ -1,6 +1,6 @@
 ---
 name: writing-voice
-description: Draft, rewrite, and polish posts/emails/announcements in the user's authentic voice. Use when the user asks “write this in my voice”, wants a draft for social/email/blog, or asks to iterate tone/style quickly while preserving intent.
+description: Draft, rewrite, and polish posts/emails/announcements in the user's authentic voice. Use when the user asks “write this in my voice”, wants a draft for social/email/blog, asks to humanize output, or says “run the critic on this”.
 ---
 
 # Writing Voice
@@ -11,8 +11,14 @@ Draft in the user's voice, then iterate fast.
 - Read `references/voice-dna-framework.md` first.
 - Read `references/voice-dna-template.md` and replace placeholders for your user.
 - Use `references/humanizer-mini.md` for a lightweight anti-AI cleanup pass.
+- Use `references/critic-protocol.md` when user asks to run the critic.
 
-## Workflow
+## Modes
+- `draft` (default): create a fresh draft in voice.
+- `humanize-mini`: clean an existing draft with the lightweight pass.
+- `critic`: run iterative self-critique when user says "run the critic on this".
+
+## Workflow (draft mode)
 1) Confirm brief quickly if missing essentials:
 - format (post/email/thread/note)
 - audience
@@ -39,6 +45,19 @@ Draft in the user's voice, then iterate fast.
 5) Return draft + review prompt:
 - ask for targeted edits (tone, structure, examples, length, CTA)
 - offer quick v2/v3 iterations
+
+## Critic mode ("run the critic on this")
+Run up to 3 rounds max.
+
+Per round:
+1) Critic review against voice DNA rules + writing samples + current brief.
+2) Assign rating: `Needs Work`, `Good`, or `Excellent`.
+3) If `Excellent`, stop.
+4) If below `Excellent`, provide specific feedback tied to exact rule/sample mismatch, then revise.
+
+Output for critic mode:
+- final revised draft
+- short critic log with round ratings + key fixes
 
 ## Iteration protocol
 When feedback arrives:

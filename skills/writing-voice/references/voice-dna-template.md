@@ -49,3 +49,9 @@ Before returning output:
 - unnecessary emoji removed
 - em dashes removed if disallowed by voice
 - headings normalized away from generic title case when needed
+
+## Critic trigger
+If your agent supports iterative review, use a simple trigger like:
+- "run the critic on this"
+
+Then run up to 3 review rounds before final output.
