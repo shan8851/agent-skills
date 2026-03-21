@@ -44,6 +44,9 @@ npx skills update
 - `memory-curation`  
   Curates and promotes memory with signal-first judgment so only durable rules/preferences are stored long-term.
 
+- `recall`  
+  Structured escalation for finding past context from conversations, decisions, or discussions when session memory falls short.
+
 - `research-review`  
   Unified review workflow for links/repos/posts/videos/topics with safe defaults and concise TL;DR output.
 

@@ -25,7 +25,8 @@ Produce one concise brief with these sections:
 3. Top 3 themes
 4. Top 1 risk this week
 5. Top 1 leverage move
-6. This Week’s Focus (5 minimum, 10 maximum) ranked by highest impact
+6. This Week's Focus (5 minimum, 10 maximum) ranked by highest impact
+7. Content ideas this week (1–3 max): blog posts, threads, or short opinion pieces suggested from actual context in dumps/memory — not generic prompts. Each idea must have a concrete angle and a one-line "why now" tied to what the user has been doing or thinking about that week.
 
 ## Quality rules
 - Evidence-backed claims only.

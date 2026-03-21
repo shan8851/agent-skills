@@ -12,8 +12,8 @@ Single, safety-first review workflow.
 - Do **not** run untrusted project code (`npm test`, `go test`, build scripts, binaries) unless user explicitly asks.
 - Do **not** clone into the main workspace.
 - Prefer metadata + static reads over local execution.
-- Always write a structured note to the notes repo.
 - Always return a short TL;DR in chat.
+- **Do NOT always write to notes.** Apply the persistence decision tree below.
 
 If deep code execution is explicitly requested later, call that out as a mode change and confirm.
 
@@ -27,15 +27,14 @@ If deep code execution is explicitly requested later, call that out as a mode ch
 - Use `references/routing-cheatsheet.md`.
 - Route examples:
   - GitHub repo link → static repo review (no code execution).
-  - X/Twitter link → `bird` first.
+  - X/Twitter link → social reader tool first.
   - YouTube link → `summarize` first (`--youtube auto`), then fallback.
   - Direct URL/article link → `summarize` first, then fallback to web fetch/search if needed.
   - General topic → web search + fetch (include Reddit scan when useful).
 
 3) **URL/YouTube summarize-first lane**
-- For direct article URLs: run `summarize "<url>" --cli codex` first.
-- For YouTube links: run `summarize "<url>" --youtube auto --cli codex` first.
-- If `--cli codex` is unavailable, fall back to provider/API-backed summarize.
+- For direct article URLs: run `summarize "<url>"` first.
+- For YouTube links: run `summarize "<url>" --youtube auto` first.
 - If `summarize` fails or coverage is weak, fallback to web search/fetch and explicitly note fallback.
 - Never run downloaded code/binaries from target content.
 
@@ -46,13 +45,19 @@ If deep code execution is explicitly requested later, call that out as a mode ch
   - Risks/caveats
   - Recommended next move
 
-5) **Write to notes repo**
-- Append/update using `references/note-template.md`.
-- Default destination: `{{NOTES_REPO}}/skill-notes/repo-reviews.md`
-- If it is a broader process/design topic, use a dedicated file under `{{NOTES_REPO}}/skill-notes/`.
+5) **Persistence decision (do NOT default to writing)**
 
-6) **Commit + push notes changes**
-- In `{{NOTES_REPO}}`:
+Apply this decision tree:
+- **ALWAYS persist** if: user explicitly asks to write it up, OR it's a project/tool we're actively adopting, OR it contains a concrete action plan we'll execute
+- **ASK first** if: it's a repo/tool review that might be useful later but isn't immediately actionable — offer: "Want the full write-up in notes or is the TL;DR enough?"
+- **SKIP persistence** if: it's a quick sanity check, one-off curiosity, or the TL;DR covers everything useful
+
+When persisting:
+- Use `references/note-template.md` format
+- Default destination: your configured notes repo or workspace notes directory
+
+6) **Commit + push notes changes** (only when persisting)
+- In your notes repo:
   - `git pull --rebase`
   - apply changes
   - `git add -A && git commit -m "..."`
@@ -69,11 +74,11 @@ These are blocked by default:
 - running downloaded binaries
 
 Optional deep-static mode (still safe):
-- cloning to ephemeral scratch (e.g. `/tmp/openclaw-research/<id>`) for read-only file inspection, then cleanup.
+- cloning to ephemeral scratch (e.g. `/tmp/research/<id>`) for read-only file inspection, then cleanup.
 
 ## Quality bar
 
 - Prefer practical, opinionated conclusions over generic summaries.
 - Be explicit about confidence and gaps.
 - Avoid over-claiming from sparse evidence.
-- Keep chat response concise; keep full detail in notes repo.
+- Keep chat response concise; keep full detail in notes.

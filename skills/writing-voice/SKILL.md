@@ -1,6 +1,6 @@
 ---
 name: writing-voice
-description: Draft, rewrite, and polish posts/emails/announcements in the user's authentic voice. Use when the user asks “write this in my voice”, wants a draft for social/email/blog, asks to humanize output, or says “run the critic on this”.
+description: Draft, rewrite, and polish posts/emails/announcements in the user's authentic voice. Use when the user asks "write this in my voice", wants a draft for social/email/blog, asks to humanize output, or says "run the critic on this".
 ---
 
 # Writing Voice
@@ -8,8 +8,7 @@ description: Draft, rewrite, and polish posts/emails/announcements in the user's
 Draft in the user's voice, then iterate fast.
 
 ## References
-- Read `references/voice-dna-framework.md` first.
-- Read `references/voice-dna-template.md` and replace placeholders for your user.
+- Always read `references/voice-dna.md` before drafting.
 - Use `references/humanizer-mini.md` for a lightweight anti-AI cleanup pass.
 - Use `references/critic-protocol.md` when user asks to run the critic.
 
@@ -25,10 +24,10 @@ Draft in the user's voice, then iterate fast.
 - goal/CTA
 - length target
 
-2) Draft v1 in the target voice:
-- follow voice DNA rules strictly
+2) Draft v1 in the user's voice:
+- follow voice-dna rules strictly
 - keep claims concrete
-- use real writing samples as primary calibration source
+- use writing samples as primary calibration source
 
 3) Run mini humanizer pass (light touch):
 - convert list-heavy blocks into prose where it reads better
@@ -39,7 +38,7 @@ Draft in the user's voice, then iterate fast.
 4) Run voice QA before sending:
 - banned phrases check
 - forbidden formatting check
-- tone match check against the user’s own writing samples
+- tone match check vs examples in voice DNA
 - ensure cleanup did not flatten personality
 
 5) Return draft + review prompt:

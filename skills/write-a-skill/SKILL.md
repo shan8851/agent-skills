@@ -11,7 +11,7 @@ Build practical skills that are easy to trigger and easy to maintain.
 Ask for the minimum context needed before drafting:
 - what job this skill should do
 - top use cases it must handle
-- what “good output” looks like
+- what "good output" looks like
 - constraints (tone, tooling, safety, portability)
 
 If details are missing, ask concise questions first instead of guessing.
@@ -42,9 +42,10 @@ See `references/skill-structure.md`.
 - `references/decision-guides.md` for:
   - when to add scripts
   - when to split files
+- `references/review-checklist.md` for optional QA before handoff.
 
 ## Handoff pattern
 After drafting, ask:
-- “Does this cover your real use cases?”
-- “What’s missing or over-specified?”
-- “Should I make this stricter or more flexible?”
+- "Does this cover your real use cases?"
+- "What's missing or over-specified?"
+- "Should I make this stricter or more flexible?"
