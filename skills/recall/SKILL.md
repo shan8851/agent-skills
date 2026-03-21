@@ -28,25 +28,13 @@ Read the last 7 days of daily memory files. These capture checkpoints, decisions
 Scan for the topic. If found, report the answer and which file had it.
 
 ### Step 3: Workspace text search (medium)
-Search across workspace directories (memory, dumps, notes) for the topic:
-
-```
-grep -rl "search term" workspace/memory/ workspace/dump/ workspace/notes/ --include='*.md' | head -10
-```
-
-If found, read the relevant file section and report.
+Search across workspace directories (memory, dumps, notes) for the topic using grep or similar. If found, read the relevant file section and report.
 
 ### Step 4: Chat history search (if available)
 If you have access to a chat history search tool (e.g. Discord search, channel logs), search for the topic there. This catches things discussed in chat but never persisted to files.
 
 ### Step 5: Session log search (expensive, last resort)
-Search raw session transcripts only if steps 1-4 failed:
-
-```
-rg -l "search term" path/to/sessions/*.jsonl | head -5
-```
-
-Then extract relevant user/assistant messages from matching files.
+Search raw session transcripts only if steps 1-4 failed. Use ripgrep or grep to find matching session JSONL files, then extract relevant user/assistant messages.
 
 ## Output
 - Report what you found and where (file path, channel, session ID)

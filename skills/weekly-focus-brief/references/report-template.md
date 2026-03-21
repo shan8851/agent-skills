@@ -1,8 +1,5 @@
 # Weekly Focus Brief Template
 
-```md
-# Weekly Focus Brief — <YYYY-WW>
-
 ## 1) Weekly momentum summary
 - 2–4 lines max
 
@@ -27,7 +24,7 @@
 - Why this is highest leverage now:
 - First 30-minute move:
 
-## 6) This Week’s Focus (5 minimum, 10 maximum) — ranked by impact
+## 6) This Week's Focus (5 minimum, 10 maximum) — ranked by impact
 1.
 2.
 3.
@@ -38,4 +35,3 @@
 8. (optional)
 9. (optional)
 10. (optional)
-```

@@ -1,8 +1,5 @@
 # Weekly Agent Self-Improvement Report Template
 
-```md
-# Weekly Agent Self-Improvement — <YYYY-WW>
-
 ## 1) Top recurring friction/failure themes
 - Theme:
   - Evidence:
@@ -12,19 +9,19 @@
 - Proposal:
   - Evidence:
   - First 30-minute move:
-  - Score: impact <H/M/L>, recurrence <H/M/L>, effort <H/M/L>, confidence <H/M/L>
+  - Score: impact (H/M/L), recurrence (H/M/L), effort (H/M/L), confidence (H/M/L)
 
 ## 3) Candidate cron/automation suggestions (top 3)
 - Proposal:
   - Evidence:
   - First 30-minute move:
-  - Score: impact <H/M/L>, recurrence <H/M/L>, effort <H/M/L>, confidence <H/M/L>
+  - Score: impact (H/M/L), recurrence (H/M/L), effort (H/M/L), confidence (H/M/L)
 
 ## 4) Candidate new ideas (top 3)
 - Idea:
   - Evidence:
   - First 30-minute move:
-  - Score: impact <H/M/L>, recurrence <H/M/L>, effort <H/M/L>, confidence <H/M/L>
+  - Score: impact (H/M/L), recurrence (H/M/L), effort (H/M/L), confidence (H/M/L)
 
 ## 5) Context alignment suggestions (top 3)
 - Suggestion:
@@ -41,4 +38,3 @@
 - Priority 1:
 - Priority 2:
 - Priority 3:
-```
