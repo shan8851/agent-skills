@@ -30,7 +30,9 @@ npx skills remove <skill-name>
 npx skills update
 ```
 
-## Available skills
+## Workflow Skills
+
+Agent operating patterns and prompt workflows — no external tooling required.
 
 - `agent-self-improvement`  
   Weekly propose-only review of dumps, memory, context, skills, and crons to suggest workflow improvements.
@@ -58,6 +60,18 @@ npx skills update
 
 - `writing-voice`  
   Drafts and polishes posts/emails in user voice with lightweight humanizer + critic pass support.
+
+## CLI Tool Skills
+
+Reference skills for CLI tools — install the tool, then the skill teaches your agent how to use it.
+
+- `companies-house-cli`  
+  UK Companies House data: search companies, directors, filings, PSC, charges, insolvency.  
+  [🦞 ClawHub](https://clawhub.ai/shan8851/companies-house-cli) · [🌐 Site](https://ch-cli.xyz)
+
+- `tfl-cli`  
+  London transport: tube status, journey planning, live arrivals, disruptions, bike docks.  
+  [🦞 ClawHub](https://clawhub.ai/shan8851/tfl-cli) · [🌐 Site](https://tfl-cli.xyz)
 
 ## Site
 

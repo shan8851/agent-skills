@@ -1,6 +1,7 @@
 ---
 name: research-review
 description: "Unified review/research workflow for links, repos, posts, videos, and topics. Use when the user asks to review, research, summarize, sanity-check, or 'look into' something. Enforce safe defaults: never run untrusted repo code/tests/builds, prefer static analysis, write findings to a notes repo, return a concise TL;DR, and keep the main chat responsive via quick-ack + background execution for longer tasks."
+category: workflow
 ---
 
 # Research Review

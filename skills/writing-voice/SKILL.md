@@ -1,6 +1,7 @@
 ---
 name: writing-voice
 description: Draft, rewrite, and polish posts/emails/announcements in the user's authentic voice. Use when the user asks "write this in my voice", wants a draft for social/email/blog, asks to humanize output, or says "run the critic on this".
+category: workflow
 ---
 
 # Writing Voice

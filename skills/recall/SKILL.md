@@ -1,6 +1,7 @@
 ---
 name: recall
 description: Find context from past conversations, decisions, or discussions when current session memory falls short. Use when the user asks "did we talk about X?", "where did we decide Y?", or when you can't find something and are about to say "I don't know".
+category: workflow
 ---
 
 # Recall

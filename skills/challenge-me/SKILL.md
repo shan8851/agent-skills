@@ -1,6 +1,7 @@
 ---
 name: challenge-me
 description: Stress-test the user's ideas, plans, workflows, projects, and writing concepts through rigorous iterative challenge. Use when the user proposes a direction and wants deep pushback, dependency mapping, tradeoff analysis, alternatives, and a strength rating before deciding.
+category: workflow
 ---
 
 # Challenge Me

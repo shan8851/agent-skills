@@ -1,6 +1,7 @@
 ---
 name: write-a-skill
 description: Create or refine agent skills with clear triggers, lean structure, and reusable references/scripts. Use when the user asks to create, rewrite, package, or improve a skill for recurring workflows.
+category: workflow
 ---
 
 # Write a Skill

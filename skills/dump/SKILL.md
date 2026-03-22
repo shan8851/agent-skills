@@ -1,6 +1,7 @@
 ---
 name: dump
 description: Capture raw user dumps passed to the skill invocation into workspace-local markdown logs with no chat response.
+category: workflow
 ---
 
 # Dump
