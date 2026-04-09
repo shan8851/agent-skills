@@ -1,79 +1,93 @@
 ---
 name: companies-house-cli
-description: UK Companies House CLI — search companies, directors, filings, PSC, charges, insolvency.
-category: cli-tool
-clawhubUrl: https://clawhub.ai/shan8851/companies-house-cli
+description: UK Companies House CLI — search companies, profiles, officers, filings, PSC, charges, insolvency, and agent-friendly JSON output aligned with rail-cli and tfl-cli. Use when looking up UK company records, directors, filing history, beneficial owners, charges, insolvency, or when an agent needs stable JSON envelopes with `ok`, `schemaVersion`, `command`, `requestedAt`, and nested `data.input` / `data.pagination`.
 ---
 
 # companies-house-cli
 
-Use `ch` for UK Companies House data: company search, profiles, officers, filings, PSC, charges, insolvency.
+Use `ch` for UK Companies House data: company search, profiles, officers, filings, PSC, charges, and insolvency.
 
-## Setup
+Setup
 
 - `npm install -g @shan8851/companies-house-cli`
 - Get a free API key: https://developer.company-information.service.gov.uk/
-- `export COMPANIES_HOUSE_API_KEY=your_key` or add to `.env` in working directory
+- `export COMPANIES_HOUSE_API_KEY=your_key` or add it to a local `.env`
 
-## Search
+Search
 
 - By name: `ch search "Revolut"`
 - With restrictions: `ch search "Revolut" --restrictions active-companies`
 - Fetch all pages: `ch search "Revolut" --all`
+- JSON in canonical style: `ch search "Revolut" --json`
 
-## Company Profile
+Company Profile
 
 - By number: `ch info 09215862`
-- Short numbers auto-pad: `ch info 9215862` becomes 09215862
+- Force text: `ch info 09215862 --text`
+- Short numbers auto-pad: `ch info 9215862` becomes `09215862`
 
-## Officers
+Officers
 
 - List directors/secretaries: `ch officers 09215862`
-- All officers (paginated): `ch officers 09215862 --all`
+- All officers: `ch officers 09215862 --all`
 - Order by: `ch officers 09215862 --order-by appointed_on`
 
-## Filings
+Filings
 
 - Filing history: `ch filings 09215862`
 - Filter by type: `ch filings 09215862 --type accounts`
 - Include document download links: `ch filings 09215862 --type accounts --include-links`
 - All filings: `ch filings 09215862 --all`
 
-## PSC (Beneficial Owners)
+PSC (Beneficial Owners)
 
 - List PSC records: `ch psc 09215862`
 - All records: `ch psc 09215862 --all`
 
-## Search Person
+Search Person
 
-- Find a person across all UK companies: `ch search-person "Nik Storonsky"`
+- Find a person across UK companies: `ch search-person "Nik Storonsky"`
 - Limit enrichment fan-out: `ch search-person "Nik Storonsky" --match-limit 5`
 - Fetch all search pages: `ch search-person "Nik Storonsky" --all`
 
-## Charges
+Charges
 
 - List company charges: `ch charges 09215862`
 - All charges: `ch charges 09215862 --all`
 
-## Insolvency
+Insolvency
 
 - Check insolvency history: `ch insolvency 09215862`
-- Returns empty result cleanly if no history (not an error)
+- Returns empty result cleanly if no history exists (not an error)
 
-## Pagination
+Pagination
 
-- All list commands support: `--items-per-page <n>`, `--start-index <n>`, `--all`
+- List commands support: `--items-per-page <n>`, `--start-index <n>`, `--all`
 - `--all` fetches every page automatically
-- `--all` and `--start-index` are mutually exclusive
+- `--all` and non-zero `--start-index` cannot be combined
 
-## Output
+Output
 
-- Add `--json` for stable normalized JSON output
-- JSON envelope: `{ command, input, pagination, data }`
-- Errors go to stderr as JSON when `--json` is set
+- Defaults to text in a TTY and JSON when piped
+- Canonical usage is subcommand-local flags: `ch search "Revolut" --json`, `ch info 09215862 --text`
+- Root compatibility aliases still work: `ch --json search "Revolut"`, `ch --text info 09215862`
+- Success envelope: `{ ok, schemaVersion, command, requestedAt, data }`
+- Error envelope: `{ ok, schemaVersion, command, requestedAt, error }`
+- Command metadata now lives under `data.input` and `data.pagination`
 - Disable colour: `ch --no-color search "Revolut"`
 
-## Notes
+Agent Notes
+
+- JSON mode writes handled errors to stdout, not stderr
+- Error payloads include `code`, `message`, and `retryable`
+- Exit codes are explicit:
+  - `0` success
+  - `2` bad input or not found
+  - `3` auth, upstream, or rate-limit failures
+  - `4` internal failures
+- Update any existing parsers that expected top-level `input` or `pagination`; those now live under `data`
+
+Notes
 
 - API key required (free, instant signup at Companies House developer portal)
 - Auth is HTTP Basic (key as username, blank password)
