@@ -1,7 +1,6 @@
 ---
 name: companies-house-cli
 description: UK Companies House CLI — search companies, profiles, officers, filings, PSC, charges, insolvency, and agent-friendly JSON output aligned with rail-cli and tfl-cli. Use when looking up UK company records, directors, filing history, beneficial owners, charges, insolvency, or when an agent needs stable JSON envelopes with `ok`, `schemaVersion`, `command`, `requestedAt`, and nested `data.input` / `data.pagination`.
-category: cli-tool
 clawhubUrl: https://clawhub.ai/shan8851/companies-house-cli
 ---
 

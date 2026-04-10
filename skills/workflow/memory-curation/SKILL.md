@@ -1,7 +1,6 @@
 ---
 name: memory-curation
 description: Curate and promote memory with signal-first judgment. Use when running memory checkpoints, consolidating daily notes, deciding what to store in durable memory, or when the user says “remember this”. Apply a strict rubric so only stable decisions/preferences/policies are promoted to long-term memory.
-category: workflow
 ---
 
 # Memory Curation

@@ -1,7 +1,6 @@
 ---
 name: weekly-focus-brief
 description: Create a user-centric weekly focus brief from workspace dumps and memory, with concrete actions and practical pattern analysis.
-category: workflow
 ---
 
 # Weekly Focus Brief

@@ -1,7 +1,6 @@
 ---
 name: dump
 description: Capture raw user dumps passed to the skill invocation into workspace-local markdown logs with no chat response.
-category: workflow
 ---
 
 # Dump
@@ -13,7 +12,7 @@ Use when a user wants quick, low-friction raw capture of thoughts/notes.
 
 ## Core behavior
 1. Read the raw text provided in the skill command input as raw input.
-2. Append an entry to `/home/shan/.openclaw/workspace/dump/YYYY-MM-DD.md`.
+2. Append an entry to the workspace dump directory (e.g. `<workspace>/dump/YYYY-MM-DD.md`).
 3. Include:
    - timestamp
    - source metadata (channel/thread/sender when available)
@@ -22,7 +21,7 @@ Use when a user wants quick, low-friction raw capture of thoughts/notes.
 5. Add only a `✅` reaction when the surface supports reactions.
 
 ## Storage rule
-- Directory: `/home/shan/.openclaw/workspace/dump/`
+- Directory: `<workspace>/dump/`
 - File per day: `YYYY-MM-DD.md`
 - Append-only.
 - Use absolute paths only (never `~`).

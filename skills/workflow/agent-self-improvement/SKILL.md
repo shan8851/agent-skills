@@ -1,7 +1,6 @@
 ---
 name: agent-self-improvement
 description: Weekly propose-only review that analyzes dumps, memory, context, skills, and crons to suggest agent workflow improvements.
-category: workflow
 ---
 
 # Agent Self-Improvement (Weekly)

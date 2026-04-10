@@ -1,7 +1,6 @@
 ---
 name: tfl-cli
 description: London transport CLI — tube status, journey planning, live arrivals, disruptions, bike docks, and agent-friendly projection via `--output <path>` for route, arrivals, and bikes. Use when checking TfL line status, planning London journeys, getting live arrivals, finding bike docks, searching stops, or when an agent needs one value or subtree instead of the full response.
-category: cli-tool
 clawhubUrl: https://clawhub.ai/shan8851/tfl-cli
 ---
 
