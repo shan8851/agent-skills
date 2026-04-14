@@ -1,71 +1,86 @@
 ---
 name: writing-voice
-description: Draft, rewrite, and polish posts/emails/announcements in the user's authentic voice. Use when the user asks "write this in my voice", wants a draft for social/email/blog, asks to humanize output, or says "run the critic on this".
+description: Draft, rewrite, humanize, and critique posts/emails/announcements in the user's authentic voice. Use when the user asks "write this in my voice", wants a public or private draft that sounds like them, wants to humanize AI-ish copy, or says "run the critic on this".
 ---
 
 # Writing Voice
 
-Draft in the user's voice, then iterate fast.
+Write like the user actually writes at their best: direct, specific, human, and never AI-polished.
 
 ## References
-- Always read `references/voice-dna.md` before drafting.
-- Use `references/humanizer-mini.md` for a lightweight anti-AI cleanup pass.
-- Use `references/critic-protocol.md` when user asks to run the critic.
+Always load:
+- `references/voice-dna.md`
+- `references/humanizer-mini.md`
+- `references/critic-protocol.md`
+
+If there is a conflict, real writing samples and live feedback win over abstract rules.
 
 ## Modes
-- `draft` (default): create a fresh draft in voice.
-- `humanize-mini`: clean an existing draft with the lightweight pass.
-- `critic`: run iterative self-critique when user says "run the critic on this".
+- `draft` (default): create a fresh draft in the user's voice.
+- `humanize-mini`: clean an existing draft without flattening it.
+- `critic`: run the critic loop when the user says "run the critic on this".
 
 ## Workflow (draft mode)
-1) Confirm brief quickly if missing essentials:
-- format (post/email/thread/note)
-- audience
-- goal/CTA
+1) Capture the minimum brief
+- format (post/email/blog/thread/note/announcement)
+- audience or register
+- goal / CTA
 - length target
+- channel, if it materially affects tone or structure
 
-2) Draft v1 in the user's voice:
-- follow voice-dna rules strictly
+If essentials are missing, ask only for the missing pieces.
+
+2) Calibrate before writing
+- read the voice DNA, especially core rules, anti-filler checklist, banned phrases, and writing samples
+- follow the user's current style unless the brief clearly calls for a different register
+- preserve honesty, specificity, and natural rhythm
+
+3) Draft v1
+- open with the point, scene, or tension quickly
 - keep claims concrete
-- use writing samples as primary calibration source
+- trust the reader
+- prefer strong prose over list spam
+- do not smooth the edges into generic “professional” writing
 
-3) Run mini humanizer pass (light touch):
-- convert list-heavy blocks into prose where it reads better
-- remove unnecessary emoji
-- remove em dashes
-- normalize title-case headings when it clashes with voice style
+4) Run mini humanizer pass
+- use `references/humanizer-mini.md`
+- keep this pass light
 
-4) Run voice QA before sending:
+5) Run voice QA before sending
 - banned phrases check
-- forbidden formatting check
-- tone match check vs examples in voice DNA
-- ensure cleanup did not flatten personality
+- false-contrast / "This isn't X. It's Y." check
+- anti-filler check
+- register/channel fit check
+- sample match check
+- ensure edits didn't sterilize personality
 
-5) Return draft + review prompt:
-- ask for targeted edits (tone, structure, examples, length, CTA)
-- offer quick v2/v3 iterations
+6) Return clean output
+- default: one clean draft, no long meta commentary
+- treat the first answer as v1, not sacred final copy
+- if useful, append a short `Options` block with 2-3 alternative hooks or endings
+- invite targeted iteration on tone, structure, examples, length, or CTA
 
-## Critic mode ("run the critic on this")
-Run up to 3 rounds max.
+## Critic mode
+When the user says "run the critic on this", use `references/critic-protocol.md`.
 
-Per round:
-1) Critic review against voice DNA rules + writing samples + current brief.
-2) Assign rating: `Needs Work`, `Good`, or `Excellent`.
-3) If `Excellent`, stop.
-4) If below `Excellent`, provide specific feedback tied to exact rule/sample mismatch, then revise.
-
-Output for critic mode:
-- final revised draft
-- short critic log with round ratings + key fixes
+Return:
+- revised draft
+- short critic log with round ratings and the key fixes
 
 ## Iteration protocol
+Use iteration as the main calibration loop.
+
 When feedback arrives:
-- preserve core message
+- preserve the core message
 - apply requested deltas only
 - keep voice consistency
-- return revised draft directly, then ask if they want one more pass
+- keep anything the user wrote themselves unless they ask for a rewrite
+- if a line is already distinctly theirs, leave it alone
+- prefer tightening, trimming, and swapping weak lines over full rewrites unless the frame is wrong
+- treat the user's edits as the highest-signal voice data
 
 ## Output style
-- Default: one clean draft, no meta commentary.
-- Voice fidelity beats over-cleaning: keep personality, opinions, and natural rhythm.
-- If useful, append a short "Options" block with 2-3 alternative hooks or endings.
+- Default: one clean draft.
+- Voice fidelity beats polish.
+- Natural imperfections are fine if the piece sounds like the user.
+- Do not explain the point, joke, or lesson twice.

@@ -1,20 +1,21 @@
 # Critic Protocol
 
-This critic-loop approach is inspired by Ole Lehmann's follow-up post:
-- https://x.com/itsolelehmann/status/2028891424733970928
+Use this protocol when the user says: "run the critic on this".
 
 ## Goal
-Catch voice drift and weak writing choices before handoff, without sterilizing style.
+Catch voice drift and weak writing choices before handoff, without sterilizing the style.
 
 ## Round loop (max 3)
 For each round:
-1) Review draft against:
+1) Review the draft against:
 - voice rules
+- anti-filler checklist
 - banned phrases
 - formatting rules
+- register / channel fit
 - writing samples
-- current brief/CTA
-2) Rate: `Needs Work`, `Good`, or `Excellent`.
+- current brief / CTA
+2) Rate it: `Needs Work`, `Good`, or `Excellent`.
 3) If below `Excellent`, list specific fixes and rewrite.
 4) Re-check the rewritten draft.
 
@@ -24,12 +25,15 @@ Stop when:
 
 ## Critic checks
 - Voice match: does this genuinely sound like the writer?
-- Substance: answers the actual ask, not an adjacent one.
-- Clarity: specific and concrete, minimal fluff/repetition.
-- Mini humanizer: lists/prose, emoji, em dash, title-case heading cleanup.
+- Substance: does it answer the actual ask, not an adjacent one?
+- Clarity: is it specific, concrete, and free of fluff or repetition?
+- Structure: does it start fast and keep momentum?
+- Register: does it fit the audience and channel without going corporate?
+- Mini humanizer: lists/prose, emoji, em dash, title-case heading, preamble/recap cleanup.
 
 ## Critic rules
-- Be specific (quote exact misses, not vague judgments).
-- Reference voice DNA rules/samples when flagging issues.
+- Be specific. Quote exact misses, not vague judgments.
+- Reference voice DNA rules or samples when flagging issues.
 - Do not over-polish away personality.
-- Natural imperfections are acceptable if voice is strong.
+- Natural imperfections are acceptable if the voice is strong.
+- If a line is sharp, specific, and human, protect it.
