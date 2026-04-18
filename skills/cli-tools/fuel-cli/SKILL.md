@@ -1,6 +1,7 @@
 ---
 name: fuel-cli
 description: UK fuel prices CLI — find nearby stations by postcode or coordinates, get station details, ranked by price/distance/freshness, and agent-friendly JSON envelopes with `--output <path>` for field projection. Use when checking UK petrol or diesel prices, finding cheapest fuel nearby, looking up station details by name or node ID, or when an agent needs structured fuel price data with data-quality advisories.
+clawhubUrl: https://clawhub.ai/shan8851/fuel-cli
 ---
 
 # fuel-cli
