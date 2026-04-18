@@ -1,6 +1,7 @@
 ---
 name: rail-cli
 description: UK National Rail CLI — live departures, arrivals, station search, destination filtering, batch station search from stdin, and lightweight field selection for agents. Use when checking UK rail boards, resolving station names/CRS codes, filtering departures or arrivals, or when an agent needs machine-friendly station search via `rail search --stdin` or `rail search --select`.
+clawhubUrl: https://clawhub.ai/shan8851/rail-cli
 ---
 
 # rail-cli
