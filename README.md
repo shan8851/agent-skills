@@ -73,6 +73,7 @@ Reference skills for CLI tools — install the tool, then the skill teaches your
 
 - `companies-house-cli` — UK Companies House data: search companies, directors, filings, PSC, charges, insolvency. [🦞 ClawHub](https://clawhub.ai/shan8851/companies-house-cli) · [🌐 Site](https://ch-cli.xyz)
 - `fuel-cli` — UK fuel prices: nearby stations by postcode, ranked by price/distance/freshness.
+- `parliament-cli` — UK Parliament data: bills, members, divisions, votes, and written questions. [🦞 ClawHub](https://clawhub.ai/shan8851/parliament-cli) · [🌐 Site](https://www.parliment-cli.xyz)
 - `rail-cli` — UK National Rail: live departures, arrivals, station search, destination filtering.
 - `tfl-cli` — London transport: tube status, journey planning, live arrivals, disruptions, bike docks. [🦞 ClawHub](https://clawhub.ai/shan8851/tfl-cli) · [🌐 Site](https://tfl-cli.xyz)
 
