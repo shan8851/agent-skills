@@ -1,16 +1,17 @@
 ---
 name: companies-house-cli
-description: UK Companies House CLI — search companies, profiles, officers, filings, PSC, charges, insolvency, and agent-friendly JSON output aligned with rail-cli and tfl-cli. Use when looking up UK company records, directors, filing history, beneficial owners, charges, insolvency, or when an agent needs stable JSON envelopes with `ok`, `schemaVersion`, `command`, `requestedAt`, and nested `data.input` / `data.pagination`.
+description: UK Companies House CLI — search companies, advanced company discovery by location/SIC/status/type/dates/name filters, profiles, officers, filings, PSC, charges, insolvency, and agent-friendly JSON output aligned with rail-cli and tfl-cli. Use when looking up UK company records, directors, filing history, beneficial owners, charges, insolvency, or building due-diligence/acquisition lead lists from Companies House data.
 clawhubUrl: https://clawhub.ai/shan8851/companies-house-cli
 ---
 
 # companies-house-cli
 
-Use `ch` for UK Companies House data: company search, profiles, officers, filings, PSC, charges, and insolvency.
+Use `ch` for UK Companies House data: company search, advanced discovery filters, profiles, officers, filings, PSC, charges, and insolvency.
 
 Setup
 
 - `npm install -g @shan8851/companies-house-cli`
+- Requires Node.js 22+.
 - Get a free API key: https://developer.company-information.service.gov.uk/
 - `export COMPANIES_HOUSE_API_KEY=your_key` or add it to a local `.env`
 
@@ -20,6 +21,36 @@ Search
 - With restrictions: `ch search "Revolut" --restrictions active-companies`
 - Fetch all pages: `ch search "Revolut" --all`
 - JSON in canonical style: `ch search "Revolut" --json`
+
+Advanced Search
+
+Use `ch search-advanced` when you need discovery rather than exact/name lookup — for example building local acquisition/research lists, finding firms in a geography/SIC niche, or narrowing Companies House by lifecycle dates.
+
+- Location + SIC + status: `ch search-advanced --location "County Durham" --company-status active --sic-codes 69201`
+- Name include + location: `ch search-advanced --company-name-includes cleaning --location Sunderland --items-per-page 20`
+- Date window as JSON: `ch search-advanced --incorporated-from 2024-01-01 --incorporated-to 2024-12-31 --json`
+- Multiple SIC codes: `ch search-advanced --sic-codes 69201,62012 --company-status active`
+- Exclude noisy name terms: `ch search-advanced --company-name-includes roofing --company-name-excludes dormant --location Leeds`
+
+Advanced filters
+
+- `--company-name-includes <text>` — company name text that must be included
+- `--company-name-excludes <text>` — company name text that must be excluded
+- `--company-status <status>` — e.g. `active`, `dissolved`
+- `--company-type <type>` — e.g. `ltd`, `plc`, `llp`
+- `--company-subtype <subtype>` — Companies House subtype filter
+- `--location <location>` — registered office location text
+- `--sic-codes <codes>` — comma-separated SIC codes, e.g. `69201,62012`
+- `--incorporated-from <date>` / `--incorporated-to <date>` — incorporation date range, `YYYY-MM-DD`
+- `--dissolved-from <date>` / `--dissolved-to <date>` — dissolution date range, `YYYY-MM-DD`
+
+Advanced search rules and output
+
+- At least one advanced filter is required; bare `ch search-advanced` is invalid.
+- List pagination flags work here too: `--items-per-page <n>`, `--start-index <n>`, `--all`.
+- Text output starts with the active filters and pagination summary, then normalized company cards.
+- JSON uses command `search-advanced`; filters are under `data.input`, pagination under `data.pagination`, and results under `data.companies`.
+- The Companies House advanced endpoint is useful for discovery, but still public registry data; treat it as a first-pass research list, then verify details with `ch info`, `ch officers`, filings, PSC, charges, and external checks.
 
 Company Profile
 
@@ -70,12 +101,12 @@ Pagination
 Output
 
 - Defaults to text in a TTY and JSON when piped
-- Canonical usage is subcommand-local flags: `ch search "Revolut" --json`, `ch info 09215862 --text`
+- Canonical usage is subcommand-local flags: `ch search "Revolut" --json`, `ch info 09215862 --text`, `ch search-advanced --location Durham --json`
 - Root compatibility aliases still work: `ch --json search "Revolut"`, `ch --text info 09215862`
 - Success envelope: `{ ok, schemaVersion, command, requestedAt, data }`
 - Error envelope: `{ ok, schemaVersion, command, requestedAt, error }`
-- Command metadata now lives under `data.input` and `data.pagination`
-- Disable colour: `ch --no-color search "Revolut"`
+- Command metadata lives under `data.input` and `data.pagination`
+- Disable colour: `ch --no-color search "Revolut"` or set `NO_COLOR`
 
 Agent Notes
 
@@ -87,6 +118,8 @@ Agent Notes
   - `3` auth, upstream, or rate-limit failures
   - `4` internal failures
 - Update any existing parsers that expected top-level `input` or `pagination`; those now live under `data`
+- For broad `search-person`, use `--match-limit` to control appointment-enrichment fan-out
+- For broad `search-advanced`, prefer `--items-per-page` first; only use `--all` when you really need the full result set
 
 Notes
 
