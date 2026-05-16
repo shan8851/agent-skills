@@ -48,6 +48,7 @@ Agent operating patterns and prompt workflows — no external tooling required.
 - `agent-self-improvement` — Weekly propose-only review of dumps, memory, context, skills, and crons to suggest workflow improvements.
 - `challenge-me` — Stress-tests ideas, plans, projects, and writing concepts with rigorous iterative challenge and tradeoff analysis.
 - `dump` — Captures raw user dumps into workspace-local markdown logs with no chat response.
+- `rate-content` — Quickly rate a single link/article/post/video/repo with a TL;DR, weighted signal score, recommended action, tags, and evidence notes.
 - `memory-curation` — Curates and promotes memory with signal-first judgment so only durable rules/preferences are stored long-term.
 - `recall` — Structured escalation for finding past context from conversations, decisions, or discussions when session memory falls short.
 - `research-review` — Unified review workflow for links/repos/posts/videos/topics with safe defaults and concise TL;DR output.
@@ -60,6 +61,7 @@ Agent operating patterns and prompt workflows — no external tooling required.
 Dev process, planning, and methodology skills.
 
 - `deep-monorepo-code-review` — Deep-review a monorepo after a major refactor by validating branches, splitting review lanes, and synthesizing a triage list.
+- `javascript-supply-chain-hardening` — Harden JavaScript/TypeScript repos against npm supply-chain risk with package-manager policy, build-script trust policy, lockfile hygiene, pinning, and CI install gates.
 - `local-app-screenshots-and-gif` — Capture screenshots and generate a tour GIF from a locally running web app for README or social posts.
 - `product-planning-doc-pack` — Creates a tight planning pack (PRD, impl plan, UI spec, source map, AGENTS.md) before implementation starts.
 - `prompt-first-ai-product` — Build AI products where the prompt IS the product — test-first prompt engineering, iterate before building UI.
