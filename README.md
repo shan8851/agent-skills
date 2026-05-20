@@ -63,7 +63,7 @@ Dev process, planning, and methodology skills.
 - `deep-monorepo-code-review` — Deep-review a monorepo after a major refactor by validating branches, splitting review lanes, and synthesizing a triage list.
 - `javascript-supply-chain-hardening` — Harden JavaScript/TypeScript repos against npm supply-chain risk with package-manager policy, build-script trust policy, lockfile hygiene, pinning, and CI install gates.
 - `local-app-screenshots-and-gif` — Capture screenshots and generate a tour GIF from a locally running web app for README or social posts.
-- `product-planning-doc-pack` — Creates a tight planning pack (PRD, impl plan, UI spec, source map, AGENTS.md) before implementation starts.
+- `product-planning-doc-pack` — Creates focused `planning-docs/` before implementation: PRD, architecture, inferred UX/CLI/API surface spec, source map, risks, working implementation plan, and agent guidance.
 - `prompt-first-ai-product` — Build AI products where the prompt IS the product — test-first prompt engineering, iterate before building UI.
 - `subagent-driven-development` — Execute implementation plans by dispatching fresh subagents per task with two-stage review.
 - `systematic-debugging` — 4-phase root cause investigation for any bug, test failure, or unexpected behavior.
