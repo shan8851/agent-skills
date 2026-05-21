@@ -1,24 +1,25 @@
 ---
 name: dump
-description: Capture raw user dumps passed to the skill invocation into workspace-local markdown logs with no chat response.
+description: Legacy raw dump workflow. In Shan OS setups, prefer deterministic gateway capture and do not append old workspace dump files unless explicitly running legacy mode.
 ---
 
 # Dump
 
-Use when a user wants quick, low-friction raw capture of thoughts/notes.
+Use only for legacy dump-file workflows. In Shan OS setups, raw capture is handled by the `shan-os-capture` Hermes gateway plugin writing to `00-CAPTURE/raw/YYYY/MM/DD.jsonl`; do not duplicate messages into old workspace dump files.
 
 ## Trigger
 - Explicit skill invocation with raw text input (for example: `/dump <raw text>`)
 
 ## Core behavior
-1. Read the raw text provided in the skill command input as raw input.
-2. Append an entry to the workspace dump directory (e.g. `<workspace>/dump/YYYY-MM-DD.md`).
-3. Include:
+1. If Shan OS live capture is enabled, do **not** append to old `<workspace>/dump/YYYY-MM-DD.md` files. Trust the deterministic gateway capture hook.
+2. If explicitly told to run legacy dump mode, read the raw text provided in the skill command input as raw input.
+3. Append an entry to the workspace dump directory (e.g. `<workspace>/dump/YYYY-MM-DD.md`) only in legacy mode.
+4. Include:
    - timestamp
    - source metadata (channel/thread/sender when available)
    - raw user input (unaltered)
-4. Do **not** send a chat response.
-5. Add only a `✅` reaction when the surface supports reactions.
+5. Do **not** send a chat response.
+6. Add only a `✅` reaction when the surface supports reactions.
 
 ## Storage rule
 - Directory: `<workspace>/dump/`
