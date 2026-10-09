@@ -1,6 +1,4 @@
-# agent-skills
-
-![Shan Skills](./assets/skills-header-only.png)
+# Agent Skills
 
 Skills I use regularly with coding agents.
 
@@ -82,4 +80,4 @@ Reference skills for CLI tools — install the tool, then the skill teaches your
 
 ## Site
 
-Browse a UI version at [skills.shan8851.com](https://skills.shan8851.com)
+Browse the skills at [shan8851.com/skills](https://www.shan8851.com/skills).
