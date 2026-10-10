@@ -8,9 +8,10 @@ Use these as a starting point and adapt to your own workflow.
 
 ```
 skills/
-├── workflow/              # Agent operating patterns
-├── software-engineering/  # Dev process & methodology
-└── cli-tools/             # CLI tool companion skills
+├── personal-agents/             # Memory, recall and routines for your own agent
+├── thinking-and-communication/  # Understand, check, rehearse, write, challenge
+├── software-engineering/        # Dev process & methodology
+└── cli-tools/                   # CLI tool companion skills
 ```
 
 Categories are directory-based — no frontmatter needed. Add a new folder to create a category.
@@ -25,7 +26,7 @@ npx skills add shan8851/agent-skills --list
 npx skills add shan8851/agent-skills -g --all
 
 # Install selected skills globally
-npx skills add shan8851/agent-skills --skill writing-voice --skill challenge-me -g -y
+npx skills add shan8851/agent-skills --skill plain-english --skill rehearse -g -y
 
 # Install to project scope (no -g)
 npx skills add shan8851/agent-skills --skill research-review
@@ -39,19 +40,27 @@ npx skills remove <skill-name>
 npx skills update
 ```
 
-## Workflow
+## Personal Agents
 
-Agent operating patterns and prompt workflows — no external tooling required.
+Memory, recall and routines for people running their own agent.
 
 - `agent-self-improvement` — Weekly propose-only review of dumps, memory, context, skills, and crons to suggest workflow improvements.
-- `challenge-me` — Stress-tests ideas, plans, projects, and writing concepts with rigorous iterative challenge and tradeoff analysis.
-- `dump` — Captures raw user dumps into workspace-local markdown logs with no chat response.
-- `rate-content` — Quickly rate a single link/article/post/video/repo with a TL;DR, weighted signal score, recommended action, tags, and evidence notes.
 - `memory-curation` — Curates and promotes memory with signal-first judgment so only durable rules/preferences are stored long-term.
 - `recall` — Structured escalation for finding past context from conversations, decisions, or discussions when session memory falls short.
-- `research-review` — Unified review workflow for links/repos/posts/videos/topics with safe defaults and concise TL;DR output.
 - `weekly-focus-brief` — Produces a user-centric weekly focus brief from dump/memory signals with concrete actions.
 - `write-a-skill` — Creates/refines skills with clear triggers, lean structure, and reusable references/scripts.
+- `dump` — *(legacy)* Captures raw user dumps into workspace-local markdown logs with no chat response. Kept for older setups.
+
+## Thinking & Communication
+
+Understand things, check you've understood them, and say them well. Useful to anyone, not just developers.
+
+- `plain-english` — Explains confusing letters, documents, contracts and official messages in everyday language: what it says, what to do and by when, with every key point tied to the source.
+- `check-my-understanding` — You explain it back in your own words; it credits what's right and fixes misunderstandings one at a time with questions, not lectures.
+- `rehearse` — Prepares and role-plays important conversations (pay rises, difficult feedback, landlords, boundaries) with adjustable difficulty, "time out" coaching and a specific debrief.
+- `challenge-me` — Stress-tests ideas, plans, projects, and writing concepts with rigorous iterative challenge and tradeoff analysis.
+- `rate-content` — Quickly rate a single link/article/post/video/repo with a TL;DR, weighted signal score, recommended action, tags, and evidence notes.
+- `research-review` — Unified review workflow for links/repos/posts/videos/topics with safe defaults and concise TL;DR output.
 - `writing-voice` — Drafts and polishes posts/emails in user voice with lightweight humanizer + critic pass support.
 
 ## Software Engineering
