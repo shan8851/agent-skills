@@ -1,20 +1,18 @@
 # Agent Skills
 
-Skills I use regularly with coding agents.
-
-Use these as a starting point and adapt to your own workflow.
+A small set of skills I actually use with coding agents and personal agents (Claude Code, Codex, OpenClaw and others). Each one encodes a process a plain prompt usually wouldn't follow. Use them as a starting point and adapt them to your own setup.
 
 ## Structure
 
 ```
 skills/
-├── personal-agents/             # Memory, recall and routines for your own agent
-├── thinking-and-communication/  # Understand, check, rehearse, write, challenge
-├── software-engineering/        # Dev process & methodology
-└── cli-tools/                   # CLI tool companion skills
+├── personal-agents/             # Capture, recall and reflect on your notes; keep memory tidy
+├── thinking-and-communication/  # Understand, check, rehearse, research, write, challenge
+├── software-engineering/        # Planning, supply-chain hardening, app screenshots
+└── cli-tools/                   # UK public data via JSON-first CLIs
 ```
 
-Categories are directory-based — no frontmatter needed. Add a new folder to create a category.
+Categories are directory-based, so no frontmatter is needed. Skills that depend on your setup include an "Adapting to your setup" section with Claude Code, Codex and OpenClaw examples.
 
 ## Install via Skills CLI
 
@@ -29,7 +27,7 @@ npx skills add shan8851/agent-skills -g --all
 npx skills add shan8851/agent-skills --skill plain-english --skill rehearse -g -y
 
 # Install to project scope (no -g)
-npx skills add shan8851/agent-skills --skill research-review
+npx skills add shan8851/agent-skills --skill research
 ```
 
 Useful commands:
@@ -42,14 +40,12 @@ npx skills update
 
 ## Personal Agents
 
-Memory, recall and routines for people running their own agent.
+A simple, portable "second brain" loop for any agent with access to a notes folder: capture → recall → reflect, plus long-term memory hygiene.
 
-- `agent-self-improvement` — Weekly propose-only review of dumps, memory, context, skills, and crons to suggest workflow improvements.
-- `memory-curation` — Curates and promotes memory with signal-first judgment so only durable rules/preferences are stored long-term.
-- `recall` — Structured escalation for finding past context from conversations, decisions, or discussions when session memory falls short.
-- `weekly-focus-brief` — Produces a user-centric weekly focus brief from dump/memory signals with concrete actions.
-- `write-a-skill` — Creates/refines skills with clear triggers, lean structure, and reusable references/scripts.
-- `dump` — *(legacy)* Captures raw user dumps into workspace-local markdown logs with no chat response. Kept for older setups.
+- `capture` — Cleans up dictated or quick notes in your own voice, files them in your notes folder and confirms in one line.
+- `recall` — Answers "what did I decide about…" questions from your saved notes and memory, with the source, date, confidence and anything newer that changes it.
+- `reflect` — Looks back over your recent notes when you ask, citing them: progress, real patterns and open follow-ups, with no forced advice.
+- `memory-curation` — Keeps the agent's long-term memory small and accurate: always saves what you ask it to remember, updates rather than duplicates, refuses secrets and tells you what changed.
 
 ## Thinking & Communication
 
@@ -58,34 +54,28 @@ Understand things, check you've understood them, and say them well. Useful to an
 - `plain-english` — Explains confusing letters, documents, contracts and official messages in everyday language: what it says, what to do and by when, with every key point tied to the source.
 - `check-my-understanding` — You explain it back in your own words; it credits what's right and fixes misunderstandings one at a time with questions, not lectures.
 - `rehearse` — Prepares and role-plays important conversations (pay rises, difficult feedback, landlords, boundaries) with adjustable difficulty, "time out" coaching and a specific debrief.
-- `challenge-me` — Stress-tests ideas, plans, projects, and writing concepts with rigorous iterative challenge and tradeoff analysis.
-- `rate-content` — Quickly rate a single link/article/post/video/repo with a TL;DR, weighted signal score, recommended action, tags, and evidence notes.
-- `research-review` — Unified review workflow for links/repos/posts/videos/topics with safe defaults and concise TL;DR output.
-- `writing-voice` — Drafts and polishes posts/emails in user voice with lightweight humanizer + critic pass support.
+- `challenge-me` — Stress-tests an idea, plan, product or design with a one-question-at-a-time grilling, then gives a verdict with risks, alternatives and a strength score.
+- `research` — A quick take on any link (TL;DR and read/skim/skip verdict) or sourced deep research on a topic, tool or repo, with safe read-only defaults.
+- `writing-voice` — Drafts, humanises and critiques posts and emails so they sound like you, learning your voice from your own writing samples. Drafts only; never sends.
 
 ## Software Engineering
 
-Dev process, planning, and methodology skills.
-
-- `deep-monorepo-code-review` — Deep-review a monorepo after a major refactor by validating branches, splitting review lanes, and synthesizing a triage list.
-- `javascript-supply-chain-hardening` — Harden JavaScript/TypeScript repos against npm supply-chain risk with package-manager policy, build-script trust policy, lockfile hygiene, pinning, and CI install gates.
-- `local-app-screenshots-and-gif` — Capture screenshots and generate a tour GIF from a locally running web app for README or social posts.
-- `product-planning-doc-pack` — Creates focused `planning-docs/` before implementation: PRD, architecture, inferred UX/CLI/API surface spec, source map, risks, working implementation plan, and agent guidance.
-- `prompt-first-ai-product` — Build AI products where the prompt IS the product — test-first prompt engineering, iterate before building UI.
-- `subagent-driven-development` — Execute implementation plans by dispatching fresh subagents per task with two-stage review.
-- `systematic-debugging` — 4-phase root cause investigation for any bug, test failure, or unexpected behavior.
-- `writing-plans` — Writes comprehensive implementation plans with bite-sized tasks, exact file paths, and complete code examples.
+- `product-planning-doc-pack` — Turns a fuzzy product or feature idea into a lean planning pack: PRD, architecture, surface spec, data sources, a plan built from thin end-to-end slices, and risks.
+- `javascript-supply-chain-hardening` — Locks down npm, pnpm, yarn or bun installs with release-age delays, install-script allowlists, frozen installs in CI and Docker, SHA-pinned actions and trusted publishing.
+- `local-app-screenshots-and-gif` — Captures same-sized screenshots of a local web app, checks them for private data, and builds a small looping tour GIF for the README.
 
 ## CLI Tools
 
-Reference skills for CLI tools — install the tool, then the skill teaches your agent how to use it.
+- `uk-public-data` — Answers questions about UK trains, London transport, Parliament, companies and fuel prices using five free, JSON-first CLIs built for agents: [rail](https://rail-cli.xyz), [tfl](https://github.com/shan8851/tfl-cli), [parliament](https://www.parliament-cli.xyz), [ch](https://ch-cli.xyz) (Companies House) and [fuel](https://github.com/shan8851/fuel-cli).
 
-- `companies-house-cli` — UK Companies House data: search companies, directors, filings, PSC, charges, insolvency. [🦞 ClawHub](https://clawhub.ai/shan8851/companies-house-cli) · [🌐 Site](https://ch-cli.xyz)
-- `fuel-cli` — UK fuel prices: nearby stations by postcode, ranked by price/distance/freshness.
-- `openclaw-blackbox` — OpenClaw run debugging: inspect failed/weird agent runs from local disk evidence. [🦞 ClawHub](https://clawhub.ai/shan8851/openclaw-blackbox) · [🌐 GitHub](https://github.com/shan8851/openclaw-blackbox)
-- `parliament-cli` — UK Parliament data: bills, members, divisions, votes, and written questions. [🦞 ClawHub](https://clawhub.ai/shan8851/parliament-cli) · [🌐 Site](https://www.parliment-cli.xyz)
-- `rail-cli` — UK National Rail: live departures, arrivals, station search, destination filtering.
-- `tfl-cli` — London transport: tube status, journey planning, live arrivals, disruptions, bike docks. [🦞 ClawHub](https://clawhub.ai/shan8851/tfl-cli) · [🌐 Site](https://tfl-cli.xyz)
+## Credits
+
+- `challenge-me`'s one-question-at-a-time loop is inspired by the "grill me" pattern popularised by Matt Pocock's grill-me skill.
+- `product-planning-doc-pack` borrows ideas such as tracer bullets and deep modules from Matt Pocock's skills.
+
+## Licence
+
+MIT. See [LICENSE](LICENSE).
 
 ## Site
 

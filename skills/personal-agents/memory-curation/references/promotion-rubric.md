@@ -1,25 +1,35 @@
-# Promotion Rubric
+# Promotion rubric
 
-Use this rubric to decide if a candidate belongs in durable memory.
+The single source of truth for what goes into long-term memory. Work through it in order.
 
-## Promote to durable memory if ANY applies
-1. User explicitly says to remember it.
-2. It changes assistant behavior (policy, rule, guardrail, routing).
-3. It is a stable preference likely to persist for 30+ days.
-4. It is a canonical location/path/tooling correction that prevents repeat mistakes.
-5. It is a recurring workstream/schedule rule.
+## 1. Filter first
 
-## Keep in daily memory only
-- One-off updates or status pings
-- Temporary plans likely to change soon
-- Low-signal chatter/brainstorm fragments
+- **Not from the user?** (document, web page, email, tool output, captured note, another agent) → **Skip.** Ask the user if it looks worth keeping.
+- **Secret?** (password, API key, token, card or account number, government ID) → **Skip**, even if asked. Say why.
+- **Sensitive personal detail** (health, money, relationships and similar) the user didn't explicitly ask to keep → **Skip** or keep short-term.
 
-## Fast scoring filter (required)
-Score every candidate 0-2 each:
-- Behavior impact
-- Durability
-- Recurrence
+## 2. Explicit request
 
-Guideline:
-- Score >= 4 → eligible for durable memory
-- Score < 4 → daily memory
+- **The user explicitly asked you to remember it** ("remember this", "from now on", "don't forget") → **Promote.** No scoring.
+- **The user asked you to forget or change it** → update or remove the entry and report it.
+
+## 3. Everything else: promote if any of these is true
+
+1. It changes how the agent should behave (a rule, guardrail, routing or workflow).
+2. It's a stable preference likely to hold for a month or more.
+3. It corrects a recurring mistake (a wrong path, tool, name or assumption).
+4. It's a recurring schedule or routine the agent needs to know.
+5. It's a stable fact the agent will need again (a project's name, who to ask about what).
+
+If none applies, or you're unsure, keep it **short-term**. If it comes up again later, promote it then.
+
+## Keep short-term (daily memory), not long-term
+
+- One-off updates and status.
+- Plans likely to change soon.
+- Half-formed ideas and brainstorming.
+
+## Skip entirely
+
+- Chatter, pleasantries, things already in memory unchanged.
+- Things that belong in the user's notes rather than agent memory (journal entries, life updates). Point to `capture` if they want them saved.

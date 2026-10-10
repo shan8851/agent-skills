@@ -1,6 +1,8 @@
 # Voice DNA
 
-Populate this file with the target writer's actual voice profile. This is not aspirational. If the rules conflict with real writing samples or live edits, the samples and edits win.
+A blank template for a writer's voice profile. It ships with the skill, so **don't fill it in here**: skill updates would overwrite your edits. Copy it to somewhere you own (for example `voice-profile.md` in your notes or project) and point your agent at that copy. In Claude Code, reference it from `CLAUDE.md`.
+
+Until a profile is filled in, only the generic rules below apply (anti-filler checklist and the starter banned phrases). The profile should describe how the writer actually writes, not how they wish they wrote. If the rules conflict with real writing samples or live edits, the samples and edits win.
 
 ## Voice
 
@@ -29,7 +31,6 @@ Good rule examples:
 - When uncertain, say so plainly.
 - Never pad output to seem more thorough.
 - Prefer concrete verbs over mushy abstractions.
-- Keep the writer's older personality even if the newer style is shorter.
 
 Replace, remove, or add rules based on the real writer.
 
@@ -55,9 +56,11 @@ Cut or rewrite these on sight:
 - The over-neat list: bullets where prose would read better.
 - The generic CTA or inspirational finish tacked on at the end.
 
-Customize this list based on what the writer actually deletes from drafts.
+Customise this list based on what the writer actually deletes from drafts.
 
-## Banned Phrases (never use these)
+## Banned Phrases (starter list — edit to taste)
+
+Generic defaults that read as AI filler for most writers. Delete any the writer genuinely uses and add the ones they always cut.
 
 ### Dead AI Language
 - "In today's [anything]..."
@@ -109,28 +112,27 @@ Customize this list based on what the writer actually deletes from drafts.
 ### Generic Insider Claims
 - "Here's the part nobody's talking about"
 - "What nobody tells you"
-- Anything with "nobody" or "most people don't realize"
+- Anything with "nobody" or "most people don't realise"
 
 ### Generic Product Copy / Critique Crutches
 Use this section for phrases the writer specifically hates and tends to delete from drafts.
 
 Examples:
-- "a calmer way to"
-- "operating surface"
-- "default posture"
-- "chrome" when talking about UI polish or clutter
-- "hand-wavy"
+- "seamless"
+- "empower"
+- "best-in-class"
+- "leverage" as a verb
 
-Only keep these if they are true for the target writer.
+Replace these with the writer's own pet hates.
 
-### The Big One (FATAL)
+### The Big One: false contrast (customisable default)
 - "This isn't X. This is Y."
 - "Not X. Y."
 - "Forget X. This is Y."
 - "Less X, more Y."
 - Any sentence that negates one framing just to assert a corrected one.
 
-If even 1 of these appears, the output fails. Delete the negation and just state the positive claim.
+Default: if even one of these appears, the draft fails. Delete the negation and just state the positive claim. It is only a default: if the writer's samples show they use this shape deliberately, relax or remove the rule in their profile.
 
 ## Audience Adaptation
 You probably do not write the same way to every audience. Define the main registers.
@@ -179,7 +181,7 @@ Useful questions:
 - Do they describe products plainly or with more flourish?
 - How do they talk about competitors?
 - What hype do they avoid?
-- What tradeoffs or mechanics do they usually emphasise?
+- What trade-offs or mechanics do they usually emphasise?
 
 ## Editing Process
 Describe how AI should edit the writer's drafts.

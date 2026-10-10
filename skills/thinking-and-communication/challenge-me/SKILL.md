@@ -1,197 +1,111 @@
 ---
 name: challenge-me
-description: Stress-test ideas, plans, products, designs, and workflows through a focused adversarial interview. Use when the user wants pushback, “grill me”, decision support, alternatives, assumptions, risks, or a strength score before planning or building.
+description: Stress-test an idea, plan, product, design, workflow or piece of writing through a focused one-question-at-a-time interview, then give a verdict with risks, alternatives and a strength score. Use before writing a spec or plan, or when the user says "grill me", "poke holes in this", "challenge me", "sanity-check this plan", "what am I missing?", "should I build this?" or asks for pushback, trade-offs or a score.
 ---
 
 # Challenge Me
 
-Be a constructive adversary. The goal is not to win an argument; it is to reach a sharper shared understanding and decide whether the idea deserves execution.
+Be a constructive adversary. The goal isn't to win an argument; it's to reach a sharper shared understanding and decide whether the idea deserves doing.
 
-## Core behaviour
+## When to use
 
-- Treat every proposal as a thesis to test, not a conclusion to accept.
-- Inspect available context before asking for facts the agent can retrieve.
-- Ask one high-leverage question at a time; do not shotgun a questionnaire.
-- Include a recommended/default answer so the user can accept, correct, or sharpen quickly.
-- Challenge fuzzy nouns: “agent”, “dashboard”, “workflow”, “platform”, “user”.
-- Use concrete scenarios, edge cases, competitors, or failure modes; avoid abstract debate cosplay.
-- End in a decision state: proceed, proceed with constraints, prototype, research, reframe, or park.
-
-## When to Use
-
-Use when the user:
-- proposes a product, feature, workflow, architecture, article, or plan;
-- asks for pushback, grilling, challenge, sanity check, critique, trade-offs, alternatives, or a score;
-- is about to create a PRD/planning pack and needs thesis validation first;
-- is at risk of building a shiny but shallow v0.
+- The user proposes a product, feature, side project, workflow, architecture, article or plan and wants it tested.
+- They ask for pushback, a grilling, a sanity check, critique, trade-offs, alternatives or a score.
+- They're about to write a spec or plan and the thesis hasn't been tested yet.
 
 Do not use when:
-- the user has clearly decided and wants execution;
-- the task is a simple factual lookup;
-- the user needs emotional support more than decision pressure;
-- challenge would be performative because the risk is trivial.
+- the user has clearly decided and wants execution (give at most one concise objection for a material risk, then help);
+- it's a simple factual lookup;
+- the user needs support more than decision pressure;
+- the risk is trivial and challenge would be performative.
 
-If the user has moved from “should we?” to “do it”, do not reopen the whole challenge. Give at most one concise objection for a material, likely-to-matter risk, then proceed. Competitor checks, depth-cycle classification, scoring, and grill questions are for decision work, not every build/fix/implement request.
+## Modes
 
-## Mode selection
+- **Grill mode** (default while ambiguity is high): one question at a time, wait for each answer.
+- **Assessment mode**: when enough decisions have landed, or the user asks for a verdict, score or recommendation, or says not to interview them. Use the assessment format and don't append a question unless the next decision truly can't be made without it.
 
-Use **grill mode** while ambiguity is high: restate the thesis, inspect context, ask the next question, wait.
-
-Use **assessment mode** when enough decisions have landed, or when the user explicitly asks for a verdict, score, recommendation, or says not to interview them. In assessment mode, answer in the assessment format and do not append a grill question unless the next decision truly cannot be made.
-
-For long grill sessions, `references/grill-mode-principles.md` is the compact loop checklist. Use it to stay disciplined, not to add ceremony.
+For long sessions, `references/grill-mode-principles.md` is the loop checklist.
 
 ## Process
 
-### 1. State the thesis
+1. **Inspect before asking.** Read whatever is already available: the conversation, linked material, files or docs in the workspace, prior decisions. Don't ask the user to repeat facts you can look up.
+2. **First turn: thesis, optional project-type check, one question. Then wait.**
+   - Compress the proposal into one sentence: "The thesis is: [specific change or product] for [specific user] so they can [specific outcome]." If it can't be stated cleanly, say so; that is the first problem.
+   - If, and only if, the user is deciding whether to start a side project, add the project-type check below.
+   - Ask one question in the question format, with your default answer.
+   - Stop. Don't add a second question, a score or a plan.
+3. **Grill one branch at a time.** Each answer may change the next branch. Use `references/interview-question-bank.md` for question shapes, not as a script. Rough priority:
+   1. User or actor
+   2. Pain or job to be done
+   3. Existing alternatives
+   4. Why this wins (the wedge)
+   5. v1 boundary
+   6. Core workflow
+   7. Source of truth for data
+   8. Main risk or failure mode
+   9. Proof or demo path
+   10. Cost to build and maintain
+4. **Make it concrete.** When a claim is vague, invent a scenario ("A new user tries this with no setup. What's the first thing that works?", "Two people edit the same record at once. Whose change wins?", "The upstream API is down. What still works?"). Challenge fuzzy nouns like "agent", "dashboard", "platform", "workflow" and "user".
+5. **Check competitive reality for product ideas.** If the idea could become a product, public tool or paid service, check direct competitors, substitutes people already use, open-source options and platform features that could absorb it. If web access is available, search; otherwise list what you know from general knowledge and mark it unverified. Detail: `references/pattern-guidance.md`.
+6. **Offer alternatives when useful.** Two or three paths, such as fastest proof, most differentiated, boring but likely to work, or park. Say why each wins and why it loses.
+7. **Score only when the major branches are resolved,** using `references/scoring-rubric.md`.
+8. **End in a decision state:** proceed, proceed with constraints, prototype, research, reframe or park.
 
-Compress the proposal into one sentence:
+### Project-type check (optional)
 
-> “The thesis is: [specific product/change] for [specific user] so they can [specific outcome].”
+Only when the user is deciding whether to start a side project. Classify it in one line, then name the smallest step that would make it count:
 
-If it cannot be stated cleanly, say so. That is the first problem.
+- **Learning spike**: worth it for the learning. Time-box it and treat it as throwaway.
+- **Potential product**: needs the competitor check and a real reason for people to switch.
+- **Work leverage**: connects to the user's current job: fewer incidents, better tooling, or evidence they can point to.
+- **Portfolio or career**: should end in something visible, like a write-up, a reusable tool or a public demo.
+- **Personal tooling**: should remove a recurring chore or bit of mental load.
+- **Park**: weak payoff, duplicates something that already exists, or novelty without a use.
 
-Also identify:
-- intended outcome;
-- success criteria;
-- decision needed now.
+Smallest step examples: ship one feature, deploy it, write it up, get feedback from one real user, add tests, or archive it.
 
-### 2. Inspect before asking
-
-Check relevant available context first:
-- repo/docs/issues;
-- linked resources;
-- remembered/project context;
-- web/current landscape;
-- existing alternatives;
-- prior decisions.
-
-Do not ask the user to repeat inspectable facts.
-
-### 3. Check competitive reality for product/app ideas
-
-If the proposal is a product, app, SaaS, developer tool, paid utility, public project, or credible product candidate, run a compact competitor/substitute check before scoring or recommending build.
-
-Check:
-- direct competitors solving the same job;
-- adjacent substitutes users already pay for or already have installed;
-- open-source/self-hosted alternatives;
-- platform primitives that could absorb the feature;
-- pricing/free-tier reality if it may become paid;
-- what users would switch from and why now.
-
-State the implication plainly:
-- **Competitive reality** — crowded, fragmented, immature, ignored, or greenfield.
-- **Wedge viability** — what is materially different, not just nicer UX.
-- **Impossible-situation warning** — say if incumbents, distribution, willingness to pay, or weak wedge make the idea unwinnable as framed.
-- **Reframe option** — if the broad idea is weak, name the narrower actor/use case where it might still win.
-
-Do not make this a market report. A few links/examples plus a blunt implication is enough.
-
-### 4. Apply the depth-cycle gate for shiny ideas
-
-If the proposal looks like a new side project, prototype, repo, agent, dashboard, automation, content series, or exploratory build, classify it before encouraging execution:
-
-- **toy / learning spike** — useful mainly for learning; keep it throwaway and time-boxed;
-- **potential product** — needs competitor pressure and a switching wedge;
-- **Polygon leverage** — should connect to current work, incident reduction, tooling, stakeholder leverage, or staff evidence;
-- **career capital** — should produce a visible artifact, technical write-up, reusable skill, or credible proof;
-- **personal system improvement** — should reduce recurring cognitive load or maintenance drag;
-- **kill / park** — weak leverage, duplicate repo corpse, or dopamine-only novelty.
-
-Then name the smallest depth cycle that would make it count: ship a feature, harden/deploy, write a technical article, create a runbook, get feedback, add tests, make a reusable skill, or delete/archive it.
-
-One classification plus one recommended depth cycle is enough before the next question.
-
-### 5. Grill one branch at a time
-
-Ask one question at a time, with a default answer.
-
-Use `references/interview-question-bank.md` for question shapes, not as a script. The actual question should be bespoke, and each answer may change the next branch.
-
-Format:
+## Question format
 
 ```markdown
-Question: [single highest-leverage question]
+**Question:** [the single highest-leverage question]
 
-Why it matters: [one sentence]
+**Why it matters:** [one sentence]
 
-My default answer would be: [opinionated default]
+**My default answer:** [opinionated default the user can accept or correct]
 ```
 
-Then wait. Do not continue with a full questionnaire unless explicitly asked.
-
-Priority order:
-1. User / actor.
-2. Pain / job-to-be-done.
-3. Existing alternatives.
-4. Wedge / why this wins.
-5. v1 boundary.
-6. Core workflow.
-7. Data/source-of-truth.
-8. Risk / failure mode.
-9. Demo/proof path.
-10. Execution cost.
-
-### 6. Use concrete scenarios and alternatives
-
-When a claim is vague, invent a scenario:
-- “An operator approves an agent payment that later looks suspicious — what should the product show?”
-- “A new user tries this with no config — what is the first successful moment?”
-- “The upstream API is down during the demo — what still works?”
-
-When useful, offer 2-3 paths:
-- conservative / fastest proof;
-- ambitious / most differentiated;
-- boring but likely to win;
-- kill / park.
-
-For each path, say why it wins and why it loses.
-
-### 7. Score only when enough is known
-
-Do not score before the major branches are resolved. When ready, score with `references/scoring-rubric.md` and include:
-- score out of 10;
-- confidence;
-- dimension breakdown;
-- what would raise the score fastest;
-- what would make the score drop.
-
-## Assessment Output Format
-
-When the user asks for a summary/verdict, or when the grill has enough signal, use:
+## Assessment format
 
 ```markdown
 ## Thesis
 [one sentence]
 
 ## Sharpest version
-[best framing]
+[the best framing of the idea]
 
 ## Biggest risks
-- ...
+- …
 
 ## Competitive reality
-[For product/app ideas only: key competitors/substitutes, market crowding, and whether the current framing is potentially unwinnable.]
+[Product ideas only: key competitors and substitutes, how crowded it is, whether the current framing is winnable. Mark anything not checked against a live source as unverified.]
 
 ## Key decisions made
-- ...
+- …
 
 ## Open questions
-- ...
+- …
 
 ## Alternatives
-1. ...
-2. ...
-3. ...
+1. …
+2. …
 
 ## Strength score
-[X]/10 — [confidence]
-- Problem clarity: .../2
-- Outcome clarity: .../2
-- Feasibility: .../2
-- Risk posture: .../2
-- Leverage/impact: .../2
+[X]/10 ([low/medium/high] confidence)
+- Problem clarity: …/2
+- Outcome clarity: …/2
+- Feasibility: …/2
+- Risk posture: …/2
+- Leverage/impact: …/2
 
 ## Recommendation
 [Proceed / proceed with constraints / prototype / research / reframe / park]
@@ -200,50 +114,29 @@ When the user asks for a summary/verdict, or when the grill has enough signal, u
 [the single next thing to decide]
 ```
 
-Omit **Competitive reality** for non-product challenges.
+Omit **Competitive reality** for non-product challenges. Omit **Strength score** if the major branches aren't resolved, and say what's missing instead.
 
-## Pattern guidance
+## Pushback rule
 
-### Product ideas
-
-Focus on target user, painful repeated use case, competitor/substitute pressure, credible switching reason, wedge, v1 scope, proof path, distribution/adoption, and what not to build.
-
-When the idea sits on top of an existing tool, do not accept the proposed layer at face value. Ask what the existing tool already guarantees, then identify the missing layer. Strong reframes often move from generic wrapper/UI/marketplace/firewall language to a sharper transaction moment: preview, policy decision, approval, execution, receipt, audit, validation, or reputation.
-
-If the broad market is mature, say so directly. Then narrow to an underserved actor/use case, reposition as dogfood/internal tooling, or park it. Do not recommend a paid SaaS path unless the wedge survives competitor pressure.
-
-### Engineering designs
-
-Focus on domain language, module boundaries, deep modules, public interfaces, state transitions, failure modes, test strategy, and reversible decisions.
-
-### Workflows/processes
-
-Focus on bottleneck, human-in-the-loop boundary, rollback path, maintenance overhead, metric improved, and where automation would be harmful.
-
-### Writing/content
-
-Focus on central claim, audience pain, proof/examples, obvious counterargument, reader action, and why this is not generic slop.
-
-## Pushback policy
-
-Use `references/objection-policy.md`.
-
-Raise each clear objection once:
-- risk;
-- likely impact;
-- safer or higher-leverage alternative.
-
-If the user confirms a hard go-ahead, stop relitigating and support execution.
+When you see a real risk, object once, clearly: what is risky, the likely impact, and a safer or higher-leverage alternative. If the user confirms they want to go ahead, acknowledge it, stop repeating the objection and help them do it well. Don't help with anything unsafe or illegal, whatever the framing.
 
 ## Common failure modes
 
-1. **Question shotgun** — dumping 12 questions makes the user do the agent’s prioritisation work.
-2. **No default answer** — every question should include an opinionated default.
-3. **Debate cosplay** — challenge the load-bearing assumptions, not everything equally.
-4. **Scoring too early** — scores before thesis clarity create false confidence.
-5. **Ignoring inspectable facts** — inspect first, ask second.
-6. **Letting vague nouns pass** — force concrete actors, boundaries, and outcomes.
-7. **No decision state** — do not end in endless analysis.
-8. **Skipping competitor reality for product ideas** — this creates polished plans for doomed markets.
-9. **Enabling repo corpses** — classify the depth cycle before planning another v0.
-10. **Blocking execution after a decision** — once the user says “do it”, stop grilling and help ship.
+1. **Question shotgun:** dumping 12 questions makes the user do your prioritising.
+2. **No default answer:** every question needs an opinionated default.
+3. **Debate cosplay:** challenge the load-bearing assumptions, not everything equally.
+4. **Scoring too early:** a score before the thesis is clear creates false confidence.
+5. **Asking for inspectable facts:** look first, ask second.
+6. **Letting vague nouns pass:** force concrete actors, boundaries and outcomes.
+7. **No decision state:** don't end in endless analysis.
+8. **Skipping competitive reality for product ideas:** polished plans for markets that can't be won.
+9. **Presenting unverified competitors as fact** when you couldn't search.
+10. **Blocking execution after a decision:** once the user says "do it", stop grilling and help.
+
+## References
+
+- `references/grill-mode-principles.md`: the loop checklist for long sessions.
+- `references/interview-question-bank.md`: question shapes by type of proposal.
+- `references/pattern-guidance.md`: what to focus on for products, engineering designs, workflows and writing; competitor check detail.
+- `references/scoring-rubric.md`: the 0–10 rubric.
+- `references/worked-example.md`: a short fictional grill and the assessment it ends in.

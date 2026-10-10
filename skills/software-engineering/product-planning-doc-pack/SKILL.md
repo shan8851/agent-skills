@@ -1,42 +1,34 @@
 ---
 name: product-planning-doc-pack
-description: Create a focused planning pack for a new software product, feature, tool, or app before implementation. Produces planning-docs with PRD, architecture, surface spec, source map, implementation plan, risks, and agent guidance. Use when product clarity is needed before code.
+description: Turn a software product, feature, tool or app idea into a short set of working planning docs before any code is written - PRD, architecture, surface spec (UX, CLI or API), data sources, a milestone-by-milestone implementation plan built from thin end-to-end slices, risks and agent guidance. Use when the user says "write a PRD", "make a planning pack", "scope this properly", "plan this before we build it", "prepare docs before building", or has a promising but fuzzy idea for a new repo or substantial feature.
 ---
 
 # Product Planning Doc Pack
 
-Use this when a software product, feature, tool, or app idea is promising but not clear enough to build. The goal is **planning**, not launch/demo prep and not implementation.
+Turn a promising but unclear software idea into a compact set of working documents that make it clear what to build first and why.
 
-The output should be a compact set of working planning documents that clarify product value, scope, architecture, user/API/CLI surface, data sources, risks, and implementation slices.
+The job is **planning, not implementation and not launch prep**. A good pack lets someone (or a coding agent) start the first slice tomorrow knowing who it's for, what's in and out of v1, how it fits together, where the data comes from, and what could kill it.
 
-Avoid documentation theatre. If a section does not change what gets built, tighten it or delete it.
+Avoid documentation theatre. If a section doesn't change what gets built, tighten it or delete it.
 
-## When this skill fits
+## When to use
 
-Use when:
-- starting a new software product or substantial feature;
-- creating a repo before scaffolding;
-- turning a messy idea into a PRD plus build plan;
-- planning a public OSS project, internal tool, devtool, dashboard, AI workflow, local-first app, CLI, API, or library;
-- the user says “write a PRD”, “make a planning pack”, “scope this properly”, or “prepare docs before building”;
-- product/UX/API/data/architecture uncertainty exists.
+- Starting a new product, tool, library, CLI, API or substantial feature.
+- Creating a repo before scaffolding it.
+- Turning a messy idea into a PRD plus build plan.
+- "Write a PRD", "make a planning pack", "scope this properly", "prepare docs before building".
+- There's real uncertainty about product, UX, API, data or architecture.
 
 Do not use when:
-- the change is tiny and obvious;
+- the change is small and obvious;
 - a PRD already exists and the user only wants implementation tasks;
-- the user only wants brainstorming or challenge;
-- the user wants demo/launch material for an already-finished product — use a dedicated demo/launch skill instead;
+- the user only wants brainstorming, or wants the idea challenged (use the `challenge-me` skill if installed);
+- the product is finished and the user wants demo or launch material;
 - the user explicitly wants code now and accepts the ambiguity.
 
 ## Output location
 
-Create planning files under `planning-docs/`.
-
-For existing repos, add `planning-docs/` to `.gitignore` by default unless the user explicitly wants the planning pack committed. This avoids clashing with normal project docs and keeps working plans private by default.
-
-For brand-new repos where the planning pack is the initial artifact, use `planning-docs/` and add it to `.gitignore` unless the user explicitly wants to commit or publish it.
-
-Default structure:
+Write files under `planning-docs/`:
 
 ```text
 planning-docs/
@@ -49,320 +41,86 @@ planning-docs/
   agent-guidance.md
 ```
 
-Optional files:
-- `planning-docs/eval-plan.md` for AI/prompt/model-heavy products.
-- `planning-docs/research-notes.md` when meaningful external research informed decisions.
+Optional: `eval-plan.md` for AI or model-heavy products; `research-notes.md` when outside research shaped decisions.
 
-## Workflow
+Add `planning-docs/` to `.gitignore` by default, for new and existing repos, unless the user wants the pack committed. It keeps working plans out of the project's real docs. Use `agent-guidance.md` instead of editing a root `AGENTS.md` or `CLAUDE.md`, unless the repo owner asks.
 
-### 1. Ground the context
+## Process
 
-For existing repos, inspect what is already there:
-- README and package manifests;
-- existing docs and design notes;
-- current tests, routes, schemas, commands, modules, or UI surfaces relevant to the idea;
-- repo guidance such as `AGENTS.md` or `CLAUDE.md` if present.
+1. **Ground the context.** In an existing repo, read the README, manifests, existing docs, relevant tests, routes, schemas, commands or UI, and any `AGENTS.md`/`CLAUDE.md`. For a new project, look at linked docs, similar tools or competitors. If something can be inspected, inspect it. If not, ask one or two high-value questions, not a questionnaire.
 
-For new projects, inspect examples, competitors from web search, related tools, or linked docs if available.
+2. **Pressure-test the idea lightly.** Who is the user? What painful job are they doing? What's the smallest useful v1? What's explicitly out? What assumption could kill it? If the idea is still mushy, suggest the `challenge-me` skill (if installed) before writing polished docs.
 
-If missing context is inspectable, inspect it. If it is not, ask one or two high-leverage questions rather than a giant questionnaire.
+3. **Pick the surface type.**
+   - **UX:** web, mobile, dashboard or visual app. Specify screens, flows, components and states, plus high-level design direction and anti-patterns.
+   - **CLI:** commands, flags, JSON output, errors, exit codes.
+   - **API or library:** public interfaces, examples, errors, compatibility.
+   - **Hybrid:** only the surfaces that matter for v1.
 
-### 2. Validate the thesis lightly
+   Don't force UX docs onto a CLI or library. Don't skip UX for a visual or operator-facing product.
 
-Before producing polished docs, pressure-test:
-- Who is the user or actor?
-- What painful job are they trying to do?
-- What is the smallest useful v1?
-- What is explicitly out of scope?
-- What assumption could kill the project?
+4. **Write the docs** using `references/file-requirements.md` for what each file needs. Write decisions and assumptions, not essays: bullets, tables, examples and explicit non-goals.
 
-If the idea is still mushy, use a challenge/grill skill first.
+5. **Plan vertical slices.** Plan the build as tracer bullets: thin slices that prove value end to end. Avoid horizontal milestones like "build backend", "build frontend", "write tests". The first slice should prove the architecture and the core value.
 
-### 3. Infer the surface type
+6. **Leave the plan maintainable.** `implementation-plan.md` is a working document with a status block and notes, so whoever builds it can update it as reality changes. To execute it, the user's agent can work milestone by milestone: build one slice, run its verification, update the status and notes, then move on.
 
-Pick the right product surface from the project:
-
-- **UX surface** — web/mobile/dashboard/visual app → specify screens, flows, components, states. Include design direction for new products at least at a high level, plus anti-patterns to avoid.
-- **CLI surface** — terminal-first tool → specify commands, flags, JSON output, errors, exit codes.
-- **API/library surface** — SDK/backend/package → specify public interfaces, examples, errors, compatibility.
-- **Hybrid surface** — combine only the surfaces that matter for v1.
-
-Do not force UX docs onto a CLI/library project. Do not ignore UX for visual/operator products.
-
-### 4. Write concise working docs
-
-Docs should be decisions and assumptions, not essays. Prefer bullets, tables, examples, and explicit non-goals.
-
-### 5. Plan vertical slices
-
-Implementation should be planned as tracer bullets: thin slices that prove value end-to-end. Avoid horizontal milestones like “build backend”, “build frontend”, “write tests”.
-
-### 6. Leave the plan maintainable
-
-The implementation plan is a working document. Include status and notes fields so agents can update it as reality changes.
-
-## File requirements
-
-### `planning-docs/prd.md`
-
-Audience: product and engineering alignment.
-
-Include:
-- product thesis: “This is X for Y who need Z”;
-- problem statement from the user’s perspective;
-- target users / actors;
-- goals and success criteria;
-- v1 scope;
-- explicit non-goals;
-- user journeys or workflows;
-- user stories where useful;
-- functional requirements;
-- non-functional requirements: privacy, performance, reliability, accessibility, cost, platform constraints;
-- terminology/glossary if new terms appear;
-- assumptions and open questions.
-
-Keep implementation details out unless they are product-shaping decisions.
-
-### `planning-docs/architecture.md`
-
-Audience: implementers and reviewers.
-
-Include:
-- system overview;
-- runtime model: local, hosted, hybrid, CLI-driven, API-driven, offline-first, etc.;
-- major modules and responsibilities;
-- data flow, preferably with Mermaid or a compact text diagram;
-- persistence model;
-- integration boundaries and external dependencies;
-- security and privacy assumptions;
-- failure modes and recovery behaviour;
-- testing strategy at a high level.
-
-Call out deep module opportunities where complexity should hide behind a simple public interface: parsers, normalizers, policy engines, state machines, adapters, API clients.
-
-### `planning-docs/surface-spec.md`
-
-Audience: whoever implements the user-facing or developer-facing surface.
-
-Infer which sections apply.
-
-#### UX section
-
-Use for apps, dashboards, mobile products, websites, and visual tools.
-
-Include:
-- global shell/navigation;
-- page-by-page or screen-by-screen structure;
-- primary user flows;
-- interaction states;
-- empty, loading, error, offline, and permission-denied states;
-- suggested component names;
-- shared data contracts per page;
-- copy/content requirements;
-- accessibility notes;
-- design direction and anti-patterns.
-
-#### CLI section
-
-Use for terminal-first tools.
-
-Include:
-- commands and subcommands;
-- flags/options;
-- input/output formats;
-- JSON/machine-readable mode if relevant;
-- exit codes;
-- examples;
-- failure messages.
-
-#### API/library section
-
-Use for APIs, SDKs, packages, and backend/library-first products.
-
-Include:
-- public interface shape;
-- core concepts and terminology;
-- example calls;
-- errors and edge cases;
-- versioning/backwards compatibility;
-- behaviour-focused test examples.
-
-### `planning-docs/source-map.md`
-
-Audience: data-layer implementer.
-
-Include:
-- expected data sources: local files, APIs, CLIs, databases, RPCs, logs, user input, config, browser state, etc.;
-- source-of-truth rules;
-- environment variable overrides;
-- read/write boundaries;
-- normalized output contracts;
-- scope model: global, per-user, per-workspace, per-project, per-wallet, per-chain, per-entity, etc.;
-- refresh/caching expectations;
-- privacy/sensitive-data handling;
-- assumptions needing confirmation.
-
-If a path/API is unknown, write the assumption and how to verify it. Do not leave “TODO: find data” as the whole plan.
-
-### `planning-docs/implementation-plan.md`
-
-Audience: implementer or coding agent.
-
-This is a **working document**, not a static plan. It should be safe for agents to update as milestones complete or assumptions change.
-
-Start with:
-
-```markdown
-# Implementation Plan
-
-## Current status
-
-- Overall status: Not started / In progress / Blocked / Complete
-- Last updated: YYYY-MM-DD
-- Current milestone: Milestone N — name
-- Current blocker: None / description
-- Next action: one concrete next step
-
-## Change log / notes
-
-- YYYY-MM-DD — Initial plan created.
-```
-
-Then include milestones in dependency order. Each milestone should have:
-
-```markdown
-## Milestone N — Name
-
-Status: Not started / In progress / Blocked / Complete
-Goal: one sentence
-Notes: working notes, discoveries, changed assumptions
-Verification: command, manual check, or acceptance signal
-
-### Slices
-
-- [ ] Slice 1 — end-to-end behaviour or capability
-- [ ] Slice 2 — end-to-end behaviour or capability
-```
-
-Rules:
-- Use vertical slices, not horizontal layers.
-- First slice should prove the architecture and core value.
-- Include likely files/areas only when known.
-- Include test strategy per milestone.
-- Include verification commands where known.
-- Keep deferred work parked clearly.
-
-Default milestone shape:
-1. Repo/bootstrap/hygiene.
-2. Domain/source discovery.
-3. First end-to-end tracer bullet.
-4. Core workflow expansion.
-5. Surface hardening.
-6. Tests, docs, observability, release readiness.
-7. Deferred extras.
-
-### `planning-docs/risks.md`
-
-Audience: decision-maker and implementer.
-
-Include:
-- product risks;
-- technical risks;
-- UX/API/CLI risks;
-- security/privacy risks;
-- delivery risks;
-- scope creep traps;
-- mitigations;
-- kill/pivot conditions;
-- assumptions to validate first.
-
-### `planning-docs/agent-guidance.md`
-
-Audience: future AI agents and contributors.
-
-Use this instead of editing root `AGENTS.md` by default. The planning pack is usually private/working; root `AGENTS.md` should only change when the repo owner wants persistent repo-wide instructions.
-
-Include:
-- what the product is;
-- current priority;
-- non-goals;
-- planning-docs structure;
-- domain language / glossary pointer;
-- testing expectations;
-- UX/API/CLI expectations;
-- security/privacy rules;
-- local verification commands;
-- how agents should update `implementation-plan.md` status and notes.
+7. **Run the final checklist** below, then reply in the output format.
 
 ## Quality rules
 
-### Choose a sharp wedge
+**Choose a sharp wedge.**
 
-Bad:
-- “A platform for everything.”
-- “A dashboard for all data.”
-- “A generic AI assistant for X.”
+Weak: "A platform for everything." "A dashboard for all data." "A generic AI assistant for X."
 
-Better:
-- “A policy firewall for autonomous agents spending programmable money.”
-- “A local-first observability console for scheduled agent work.”
-- “A CLI that gives agents reliable, JSON-shaped access to UK rail disruption data.”
+Sharper:
+- "A CLI that gives on-call engineers JSON access to incident timelines."
+- "A booking app that lets members of a small gym reserve classes from their phone."
+- "A local-first log viewer for scheduled jobs on one machine."
 
-### Prefer vertical slices
+**Prefer vertical slices.** A good slice proves one narrow user or developer flow, uses real data or clearly labelled fixtures, goes through the public interface, can be tested by behaviour, and can be demonstrated when done.
 
-A good implementation slice:
-- proves one narrow user/developer flow;
-- uses real data or clearly-labelled fixtures;
-- exercises the public interface;
-- is behaviour-testable;
-- is demoable/verifiable when complete.
+**Be honest about mocks.** Mocks and prototypes are fine; pretending they're real isn't. Label behaviour as real, mocked, simulated, fixture-backed, dry-run or future integration.
 
-### Be honest about mocks and prototypes
+**Treat code quality as scope.** Encourage small composable modules, obvious names, data readers and adapters kept separate from UI, typed contracts where the language supports them, behaviour-focused tests, and deep modules that hide complexity behind a simple interface. No giant files, and no speculative plugin systems unless they're the v1 wedge.
 
-Mocks and prototypes are fine. Lying about them is not. Label behaviour as real, mocked, simulated, fixture-backed, dry-run, or future integration.
+## Output format
 
-### Treat code quality as product scope
+After writing the pack, reply with:
 
-Planning docs should encourage:
-- small composable modules;
-- obvious names;
-- domain readers/adapters separate from UI;
-- typed contracts where the language supports it;
-- behaviour-focused tests;
-- no giant sludge files;
-- no speculative plugin systems unless core to v1.
+```markdown
+**Files:** [created or updated, under planning-docs/]
+**Thesis:** [one sentence: "X for Y who need Z"]
+**Biggest open decision:** [the one that most changes the build, and who decides]
+**First slice:** [the first end-to-end slice to build], or the next planning question if it isn't ready
+```
 
 ## Common failure modes
 
-1. **Starting with the scaffold** — scaffolding before product shape is clear creates a repo-shaped todo list.
-2. **Writing one giant PRD** — separate product requirements, architecture, surface shape, sources, risks, and implementation.
-3. **Letting implementation detail become the pitch** — use implementation details in architecture, not positioning.
-4. **Leaving data sources hand-wavy** — name sources and define contracts.
-5. **Smuggling v2 into v1** — park broad integrations and plugin systems unless they are the wedge.
-6. **Weak testing decisions** — “add tests” is not a plan; name behaviours and interfaces.
-7. **Forgetting the plan is live** — update status/notes as milestones complete or assumptions change.
+1. **Starting with the scaffold:** scaffolding before the product shape is clear creates a repo-shaped to-do list.
+2. **One giant PRD:** keep requirements, architecture, surface, sources, risks and plan in separate files.
+3. **Implementation detail as the pitch:** keep technology choices in `architecture.md`, not the thesis.
+4. **Hand-wavy data sources:** name each source and define its contract. "TODO: find data" is not a plan.
+5. **Smuggling v2 into v1:** park broad integrations and plugin systems unless they're the wedge.
+6. **Weak testing decisions:** "add tests" isn't a plan. Name the behaviours and interfaces to test.
+7. **A static plan:** forgetting to give the plan status and notes, so it goes stale after the first milestone.
+8. **Questionnaire first:** asking ten questions that reading the repo would have answered.
 
-## Final review checklist
+## Final checklist
 
-Before calling the pack done, verify:
-
-- [ ] Files are under `planning-docs/`.
-- [ ] Existing repo has `planning-docs/` gitignored unless user requested otherwise.
-- [ ] Product thesis is one sentence and sharp.
-- [ ] Target users/actors are specific.
+- [ ] Files are under `planning-docs/`, gitignored unless the user asked otherwise.
+- [ ] The product thesis is one sharp sentence.
+- [ ] Target users or actors are specific.
 - [ ] v1 scope and non-goals are explicit.
-- [ ] Surface type was inferred: UX, CLI, API/library, or hybrid.
-- [ ] Sources, paths, APIs, env vars, and boundaries are named.
-- [ ] Architecture includes modules, data flow, persistence, and integration boundaries.
-- [ ] Implementation plan has current status, notes, milestones, slices, and verification.
-- [ ] Risks include product, technical, security/privacy, and delivery risks.
-- [ ] Mocked/simulated/dry-run behaviour is clearly labelled where relevant.
+- [ ] The surface type was chosen: UX, CLI, API/library or hybrid.
+- [ ] Sources, paths, APIs, environment variables and boundaries are named, with assumptions marked.
+- [ ] Architecture covers modules, data flow, persistence and integration boundaries.
+- [ ] The implementation plan has a status block, notes, milestones, vertical slices and verification steps.
+- [ ] Risks cover product, technical, security/privacy and delivery, with kill or pivot conditions.
+- [ ] Mocked, simulated or dry-run behaviour is labelled.
 
-## Closing move
+## References
 
-After generating the pack, respond with:
+- `references/file-requirements.md`: what each file in the pack must contain, including the implementation-plan template.
 
-1. Files created or updated.
-2. The strongest product thesis.
-3. The biggest unresolved decision.
-4. The first implementation slice or next planning question.
+With thanks to Matt Pocock's skills for ideas such as tracer bullets and deep modules.

@@ -28,7 +28,7 @@ Rules:
 - Is this problem painful enough for repeated use?
 - What existing alternative solves 80% of this?
 - What is the wedge that makes this better, faster, safer, cheaper, or more delightful?
-- What is the first moment where a user says “oh, I get it”?
+- What is the first moment where a user says "oh, I get it"?
 - What single risk could kill the project early?
 - What would be impressive in a demo but useless in real life?
 - What would be boring in a demo but essential in real life?
@@ -53,19 +53,19 @@ Rules:
 - What is the rollback path if it fails?
 - Where does the human need visibility, approval, or override?
 
-## Demo / hackathon / stakeholder pitch
+## Demo / pitch
 
 - What is the 30-second pitch?
 - What is the 3-minute demo path?
 - What is the wow moment?
 - What is real vs mocked vs dry-run?
 - What fails if the network/API/provider dies during the demo?
-- What would judges/stakeholders misunderstand?
+- What would the audience most likely misunderstand?
 
-## Writing/content
+## Writing / content
 
 - What is the one claim worth arguing?
 - What specific audience pain does this address?
-- What proof/examples make this non-generic?
+- What proof or examples make this non-generic?
 - What would a strong critic say is wrong?
 - What action should a reader take after reading?
