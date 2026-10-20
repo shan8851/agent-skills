@@ -25,7 +25,7 @@ Shan's public collection of reusable agent skills (open Agent Skills format: a f
 
 ## Shipping
 - Commit and push only when Shan asks. A push makes skills installable immediately.
-- After a push that adds, renames or moves skills: in `C:\Users\shan8851\shan\shan_site`, run `pnpm skills:sync`, add any visitor-facing copy to `app/content/skillPresentation.ts`, check `/skills` locally, then ship the site (that's the SITE project's workflow).
+- After a push that adds, renames or moves skills: in `~/shan/shan_site`, run `pnpm skills:sync`, add any visitor-facing copy to `app/content/skillPresentation.ts`, check `/skills` locally, then ship the site (that's the SITE project's workflow).
 - Moving a skill between categories keeps its install name, but it changes GitHub URLs. Check the README and ClawHub links.
 
 ## Sidebar
