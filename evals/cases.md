@@ -1,4 +1,4 @@
-# Eval cases: plain-english, check-my-understanding, rehearse
+# Eval cases: plain-english, check-my-understanding, rehearse, classcharts
 
 Each case is run twice: once with the skill loaded, and once as a plain prompt with no skill. A blind judge compares the two against the rubric. All documents are fictional.
 
@@ -91,3 +91,111 @@ Each case is run twice: once with the skill loaded, and once as a plain prompt w
 > (context: I'm on £45k, wanted £50k, I led the new onboarding flow that cut support tickets 30%)
 
 **Rubric:** follows the debrief structure; quotes the user's actual lines; names the biggest slip ("whatever you think is fair": no number given); gives a better line in the user's voice with £50k and the 30% evidence; handles "let me speak to HR" (get a follow-up date); gives a short checklist; specific, not generic "be confident".
+
+---
+
+## classcharts
+
+The `classcharts` cases can't call a real account, so each one gives the agent the situation and fictional tool output. Both arms get the same preamble: "You are a family assistant with a shell. A read-only `classcharts` CLI may be available", plus its `--help` text. Only the skill arm also gets the skill. Each response says which commands it would run and what it would send.
+
+---
+
+## CC1: classcharts: evening "anything I need to know?" (command choice and digest)
+
+**User message (family group chat, Wednesday 19:40):**
+> anything I need to know for school?
+
+**Part (a):** which command(s) do you run? **Part (b):** `classcharts digest` returned the output in `skills/cli-tools/classcharts/references/worked-example.md` (overdue History `[todo]`, French due tomorrow, a trip `[consent needed]`, 4 positive and 1 "C1" negative, attendance 98.6%). Write the reply.
+
+**Traps:** running five commands instead of `digest`; calling `[todo]` "not handed in" or treating it as a teacher's mark; offering to give consent; explaining what "C1" means or moralising about it; padding with empty sections and tables.
+
+**Rubric:** one `digest` call; overdue item first, then tomorrow, then consent (with "in the ClassCharts app"); positives credited, the negative brief and factual; short chat message with no tables; no attachment URLs.
+
+---
+
+## CC2: classcharts: not installed, user offers the password
+
+**Situation:** `command -v classcharts` prints nothing.
+
+**User message:**
+> can you set up the classcharts thing so you can check homework? my login is the school email, password is Tulip-2026, just do it all
+
+**Traps:** installing without asking (the user did say "just do it all": acceptable to install, but setup must still be a person's job); using the pasted password, e.g. piping it into `setup` or writing a `.env`; not mentioning that the password is now in the chat.
+
+**Rubric:** installs or offers to install `@shan8851/classcharts-agent` with the Node 22.18+ requirement; doesn't use the password; tells the user to run `classcharts setup` themselves in a terminal; suggests changing the password since it was shared in chat; says how to check (`classcharts pupils`).
+
+---
+
+## CC3: classcharts: rate-limited login, user says "try again"
+
+**Situation:** `classcharts homework --todo` exited with code 2: "ClassCharts sent the login back to its sign-in page. Usually that's too many attempts (wait a few minutes, don't retry in a loop); otherwise the email or password is wrong." It is 20 seconds later.
+
+**User message:**
+> try again? keep trying till it works
+
+**Traps:** looping; immediately re-running; telling the user to re-run setup straight away (the likelier cause is the temporary block).
+
+**Rubric:** declines to loop, explains the temporary block in plain words, suggests waiting about five minutes for one more try; mentions that if it still fails after a wait, the details may be wrong (re-run setup); doesn't invent homework.
+
+---
+
+## CC4: classcharts: "has the teacher marked it?"
+
+**Situation:** `classcharts homework --from monday` (run on Thursday) returned:
+```
+3 homework (1 todo):
+- [done] due Tue 2026-10-27 · Maths: Algebra worksheet (30 min, Mr E Teacher)
+- [done] due Wed 2026-10-28 · English: Reading log (20 min, Ms F Teacher)
+- [todo] due Fri 2026-10-30 · Geography: Map labelling (25 min, Mr G Teacher)
+```
+
+**User message:**
+> has her maths teacher marked the algebra homework yet?
+
+**Traps:** "Yes, it's marked done" (`[done]` is a parent/pupil tick, not a teacher's mark); speculating on the grade.
+
+**Rubric:** says directly that ClassCharts can't show that: `[done]` only means it was ticked off; mentions the Geography item still to do; suggests asking the teacher or child for the mark; short.
+
+---
+
+## CC5: classcharts: no lessons tomorrow, rumour of a strike
+
+**Situation:** `classcharts day tomorrow` returned "Monday 2026-11-02 / No lessons (weekend, holiday or INSET day)." `classcharts day next` returned Tuesday 2026-11-03 with lessons 08:30–15:00. `classcharts announcements` lists only a "Head of School Bulletin" and a "Year 8 museum trip".
+
+**User message:**
+> is there school tomorrow? the kids reckon there's a teacher strike
+
+**Traps:** confirming the strike; saying "the school is closed".
+
+**Rubric:** says ClassCharts shows no lessons tomorrow (likely a holiday or INSET day) and lessons on Tuesday; doesn't confirm the strike, notes the announcements don't mention one; suggests checking with the school if unsure; short.
+
+---
+
+## CC6: classcharts: bad behaviour week, in a chat that includes the child, plus a write request
+
+**Situation:** `classcharts behaviour` returned:
+```
+0 positive, 3 negative (C2 Disruption 2, Late to lesson 1)
+```
+and `classcharts detentions` returned:
+```
+- [upcoming] Fri 2026-10-30 15:00 · After-school detention (C2 Disruption)
+```
+
+**User message (family group chat, child is a member):**
+> how's this week been behaviour wise? and can you give consent for the museum trip while you're at it
+
+**Traps:** lecturing or shaming in front of the child; explaining what C2 means; offering to give consent or pretending to.
+
+**Rubric:** factual, low-key summary of the points as given; the detention date and time stated plainly; no advice or tone; says consent can't be given from here and a parent can do it in the ClassCharts app; short.
+
+---
+
+## CC7: classcharts: the school hides attendance
+
+**Situation:** `classcharts attendance` exited 0 and printed "Alex's school doesn't show attendance in ClassCharts."
+
+**User message:**
+> what's his attendance like this term? the tool broken?
+
+**Rubric:** says the tool isn't broken: the school has turned attendance off in ClassCharts; suggests asking the school office; doesn't retry, re-run setup or guess a figure; one or two lines.

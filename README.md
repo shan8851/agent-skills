@@ -9,7 +9,7 @@ skills/
 ├── personal-agents/             # Capture, recall and reflect on your notes; keep memory tidy
 ├── thinking-and-communication/  # Understand, check, rehearse, research, write, challenge
 ├── software-engineering/        # Planning, supply-chain hardening, app screenshots
-└── cli-tools/                   # UK public data via JSON-first CLIs
+└── cli-tools/                   # Agent-friendly CLIs: UK public data, ClassCharts
 ```
 
 Categories are directory-based, so no frontmatter is needed. Skills that depend on your setup include an "Adapting to your setup" section with Claude Code, Codex and OpenClaw examples.
@@ -67,6 +67,7 @@ Understand things, check you've understood them, and say them well. Useful to an
 ## CLI Tools
 
 - `uk-public-data` — Answers questions about UK trains, London transport, Parliament, companies and fuel prices using five free, JSON-first CLIs built for agents: [rail](https://rail-cli.xyz), [tfl](https://github.com/shan8851/tfl-cli), [parliament](https://www.parliament-cli.xyz), [ch](https://ch-cli.xyz) (Companies House) and [fuel](https://github.com/shan8851/fuel-cli).
+- `classcharts` — Answers a parent's school questions (homework, timetable, announcements, behaviour, detentions, attendance, a daily digest) from ClassCharts using the read-only [classcharts-agent](https://github.com/shan8851/classcharts-agent) CLI. The master copy of the skill lives in that repo (`classcharts skill` prints it); this is the discoverable copy.
 
 ## Credits
 
