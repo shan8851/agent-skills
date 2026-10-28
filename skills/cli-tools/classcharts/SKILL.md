@@ -48,7 +48,7 @@ Start with the narrowest command that answers the question. For a general check-
 | "Which children are linked?" | `pupils` (also shows which sections the school turns on) |
 
 - Dates: `YYYY-MM-DD`, `today`, `tomorrow`, `yesterday`, `next`, or a weekday (`friday` means the next Friday, today included).
-- More than one child linked: pass `--pupil <first name or id>`, or run once per child when the question is about all of them.
+- More than one child linked: every command needs `--pupil <first name or id>` (or `CLASSCHARTS_PUPIL` set). The CLI refuses to guess and lists the linked children. Run once per child when the question covers all of them. Scheduled or unattended agents should use the id.
 - Text output is already compact. Add `--json` only when you need to process the result.
 - One `week` call beats five `day` calls. The login is cached between calls, but don't hammer the API.
 
@@ -78,14 +78,14 @@ Start with the narrowest command that answers the question. For a general check-
 | 2 | "No ClassCharts login found" | Setup hasn't been run. Ask a person to run `classcharts setup` in a terminal. |
 | 2 | "Sent the login back to its sign-in page" | Usually too many login attempts: ClassCharts blocks logins for a few minutes. **Wait; don't retry in a loop**. Tell the user to try again in about five minutes. If it keeps happening after a wait, the email or password is probably wrong, so they should re-run `setup`. |
 | 2 | "Login failed" / "not understood" | Wrong details, or ClassCharts changed its login. Tell the human; don't work around it. |
-| 1 | Bad date or another error | The message says what went wrong. Fix the input (for example an inverted `--from`/`--to`) and run once more. |
+| 1 | Bad date, missing `--pupil`, a refused request, or ClassCharts unavailable or sending something unexpected | The message says what went wrong. Fix the input (for example an inverted `--from`/`--to`, or add `--pupil`) and run once more. Otherwise report it. |
 
-Never answer from memory or guesswork when the tool fails. "I couldn't reach ClassCharts" is a fine answer.
+**An error never means "nothing due".** After a failed command, don't report an empty day, "no homework" or "no detentions". Say the check failed. Never fill the gap from memory or guesswork: "I couldn't reach ClassCharts" is a fine answer.
 
 ## Adapting to your setup
 
 - **Claude Code:** install the skill under `~/.claude/skills/classcharts/`, or let the tool write the canonical copy: `classcharts skill > ~/.claude/skills/classcharts/SKILL.md`.
-- **Codex / OpenClaw / a chat bot (WhatsApp, Telegram):** the agent needs a shell on the machine where `classcharts setup` was run, because the login is saved per user on that machine (`~/.config/classcharts-agent/.env`). Run setup as the same OS user the bot runs as.
+- **Codex / OpenClaw / a chat bot (WhatsApp, Telegram):** the agent needs a shell on the machine where `classcharts setup` was run, because the login is saved per user on that machine (`~/.config/classcharts-agent/.env`, plain text protected by file permissions, so treat that file like a password). Run setup as the same OS user the bot runs as.
 - **Scheduled digest:** a daily `classcharts digest` from cron or your agent's scheduler works well. Once a day is plenty.
 
 ## Common failure modes
@@ -93,6 +93,7 @@ Never answer from memory or guesswork when the tool fails. "I couldn't reach Cla
 - Saying a teacher "marked" homework done, or that `[done]` means handed in.
 - Calling a no-lessons day a strike, closure or illness without an announcement saying so.
 - Retrying a blocked login in a loop instead of waiting.
+- Reporting "nothing due" or an empty day after a command failed.
 - Asking for the parent's password in chat, or trying to script `setup`.
 - Explaining what a behaviour code means, or moralising about a negative point.
 - Pasting attachment URLs into a group chat.
@@ -101,4 +102,4 @@ Never answer from memory or guesswork when the tool fails. "I couldn't reach Cla
 ## References
 
 - `references/worked-example.md`: an evening digest turned into a family-chat message, annotated.
-- `references/edge-cases.md`: not installed, no login, rate-limited, several children, holidays, hidden sections, write requests, a negative behaviour week.
+- `references/edge-cases.md`: not installed, no login, rate-limited, several children, holidays, hidden sections, write requests, a negative behaviour week, a failed check.

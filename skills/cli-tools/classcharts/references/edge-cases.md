@@ -42,9 +42,13 @@ If it fails the same way after a real wait (five minutes or more), the saved det
 
 ## 4. More than one child
 
-`classcharts pupils` lists two children, Alex and Sam. The question is "what homework is outstanding?" with no name.
+The question is "what homework is outstanding?" with no name, and two children are linked. Without `--pupil`, the CLI exits with code 1 instead of guessing:
 
-Run `homework --todo --pupil Alex` and `homework --todo --pupil Sam`, then answer per child with a short line each. If the question names one child, use `--pupil` for that child only. If a name doesn't match, `pupils` shows the exact names to use.
+```
+More than one child is linked; choose one with --pupil or CLASSCHARTS_PUPIL. Linked: Alex (1234567), Sam (7654321)
+```
+
+Run `homework --todo --pupil Alex` and `homework --todo --pupil Sam`, then answer per child with a short line each. If the question names one child, use `--pupil` for that child only. A scheduled digest or unattended bot should use the ids, or set `CLASSCHARTS_PUPIL`, so a renamed or duplicate first name can't break it.
 
 ## 5. Holiday or INSET day
 
@@ -100,6 +104,16 @@ Factual, short, no guess at what "C2" means at this school, no advice and no ton
 
 "What's due this week?" `week` shows two items due this week, and `[todo]` homework from last week appears in `digest` or `homework --todo`. If you've seen overdue `[todo]` items, mention them first, even though they weren't asked about. They're usually what the parent most needs to know.
 
-## 10. Attachments
+## 10. A failed check isn't "nothing due"
+
+"Anything due tomorrow?" `day tomorrow` exits with code 1 and a message about ClassCharts being unavailable.
+
+Don't answer "nothing due" or "no lessons". An error is not an empty result. Say:
+
+> I couldn't check ClassCharts just now (it didn't respond properly). I'll try again later, or you can look in the app.
+
+Try once more later, not in a loop.
+
+## 11. Attachments
 
 `homework --full --json` includes `attachments[].url`. These links are signed and expire. In a chat, name the file and say it's in ClassCharts. Don't paste the URL. If the user is working with you directly and needs the file, fetch it promptly and don't store the link.
