@@ -1,6 +1,6 @@
 ---
 name: classcharts
-description: Answer a parent's questions about their child's school from ClassCharts (used by many UK secondary schools) with the read-only `classcharts` CLI: homework, timetable, announcements, behaviour points, detentions and attendance, plus a one-call daily digest. Use when someone asks "what homework is due?", "anything outstanding?", "what's on tomorrow?", "is there school on Monday?", "what's this week look like?", "has the school sent anything?", "any trips or forms?", "how's behaviour been?", "any detentions?", "how's attendance?" or "anything I need to know?", or wants a school summary for a family chat.
+description: Answer a parent's questions about their child's school from ClassCharts (used by many UK secondary schools) with the read-only `classcharts` CLI, covering homework, timetable, announcements, behaviour points, detentions and attendance, plus a one-call daily digest. Use when someone asks "what homework is due?", "anything outstanding?", "what's on tomorrow?", "is there school on Monday?", "what's this week look like?", "has the school sent anything?", "any trips or forms?", "how's behaviour been?", "any detentions?", "how's attendance?" or "anything I need to know?", or wants a school summary for a family chat.
 ---
 
 # ClassCharts
