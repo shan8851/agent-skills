@@ -151,14 +151,12 @@ Rules:
 - Include verification commands where known.
 - Keep deferred work parked clearly.
 
-Default milestone shape:
-1. Repo/bootstrap/hygiene.
-2. Domain/source discovery.
-3. First end-to-end tracer bullet.
-4. Core workflow expansion.
-5. Surface hardening.
-6. Tests, docs, observability, release readiness.
-7. Deferred extras.
+Default milestone shape (vertical, not by layer):
+1. Tracer slice: the thinnest end-to-end path through the real surface, including only the setup it needs. It proves the architecture and the core value.
+2. One milestone per user-visible capability, in value order. Each one works end to end and ships with its own tests and any docs it needs.
+3. Deferred extras, parked.
+
+Don't plan separate milestones for "setup", "backend", "tests" or "docs": that work goes inside the slice that needs it.
 
 ## `planning-docs/risks.md`
 

@@ -33,7 +33,7 @@ Part of a set: **capture** saves notes, **recall** finds them, **reflect** looks
 
 ## Process
 
-1. **Set the window.** Use the period the user names. Otherwise use "since the last reflection" (the date in the ledger, the helper's last checkpoint, or ask once if neither exists). For a first reflection with no history, default to the last 7 days and say so.
+1. **Find the notes folder** (see "Adapting to your setup"), then **set the window.** Use the period the user names. Otherwise use "since the last reflection" (the date in the ledger, the helper's last checkpoint, or ask once if neither exists). For a first reflection with no history, default to the last 7 days and say so.
 2. **Find what's in the window.** List notes by the dates written in them. The optional helper (below) also catches older notes that were edited. Include inbox and topic notes, not just the journal.
 3. **Read and assess.** Read what's relevant; skim reference material. Note gaps you didn't cover.
 4. **Reconcile open follow-ups** (if a ledger exists): has anything been done, changed, dropped or become due? Change status only on evidence. See `references/ledger.md`.
@@ -76,6 +76,8 @@ python scripts/changed_notes.py checkpoint --notes notes/
 ## Adapting to your setup
 
 Assume nothing exists except the notes folder. Paths are examples.
+
+**Find the notes folder first.** Use the folder the user has named, or the one recorded in agent memory. If neither exists, ask once where their notes live and save the answer to agent memory, so `capture`, `recall` and `reflect` all use the same folder in every session and project.
 
 - **Plain folder:** `notes/` with `journal/`, `inbox.md` and topic notes. List by filename dates, or use the helper.
 - **Claude Code:** notes are a folder like `notes/` or an Obsidian vault. If the user wants a regular reflection, they can set up a scheduled task; the result should land in chat or as a draft, not as a new journal entry.

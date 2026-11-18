@@ -36,7 +36,7 @@ Go cheapest first. Stop as soon as you have a confident answer **and** have chec
 
 1. **What's already in context.** Memory files loaded at session start and files you've read this session. Don't re-read them unless they may have changed or dropped out of context in a long session.
 2. **Agent memory.** The long-term memory file (for example `MEMORY.md` or `CLAUDE.md`) and any recent daily memory files, if they exist.
-3. **The user's notes.** Search for distinctive names, phrases, places and approximate dates from the question. Search filenames, then content (for example `rg --files` then `rg -n -i "<term>"`). Try synonyms and broader terms. Open the matching notes and follow links that look relevant.
+3. **The user's notes** (see "Find the notes folder first" below). Search for distinctive names, phrases, places and approximate dates from the question. Search filenames, then content (for example `rg --files` then `rg -n -i "<term>"`). Try synonyms and broader terms. Open the matching notes and follow links that look relevant.
 4. **Newer entries.** Search the same topic again and look at anything dated after your match. If a later note disagrees, the answer is the later one, with the change explained.
 5. **Chat history, if you have a tool for it.** For example a Discord or Slack search tool, or the platform's past-conversation search. This catches things discussed but never saved.
 6. **Raw session logs, last resort.** If the platform keeps transcripts (for example JSONL session files), search them with `rg` and read only the relevant messages.
@@ -66,6 +66,8 @@ It may have been discussed somewhere I can't see, or never saved. [One targeted 
 ## Adapting to your setup
 
 Assume nothing exists except the notes folder. Skip steps that don't apply and say so if it matters. Paths are examples.
+
+**Find the notes folder first.** Use the folder the user has named, or the one recorded in agent memory. If neither exists, ask once where their notes live and save the answer to agent memory, so `capture`, `recall` and `reflect` all use the same folder in every session and project. Recall only reads, so if you have to ask, don't create anything.
 
 - **Plain folder:** `notes/` (with `inbox.md`, `journal/`, topic notes). Steps 3 and 4 do most of the work.
 - **Claude Code:** long-term memory is `CLAUDE.md` (or auto-memory, if enabled); notes are a folder like `notes/` or an Obsidian vault. Session transcripts, where kept locally, are JSONL files and are a last resort.
