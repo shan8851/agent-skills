@@ -1,6 +1,6 @@
 # parliament: UK Parliament
 
-Package `@shan8851/parliament-cli`, binary `parliament`. Node.js 22+. No key needed. Homepage: https://www.parliament-cli.xyz
+Package `@shan8851/parliament-cli`, binary `parliament`. Node.js 22+. No key needed. Homepage: https://github.com/shan8851/parliament-cli
 
 Bills, Commons divisions (votes), members of both Houses and written questions, from the official Parliament APIs (Bills, Commons Votes, Members, Written Questions).
 

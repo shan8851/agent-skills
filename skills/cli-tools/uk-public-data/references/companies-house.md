@@ -1,6 +1,6 @@
 # ch: Companies House
 
-Package `@shan8851/companies-house-cli`, binary `ch`. Node.js 22+. Homepage: https://ch-cli.xyz
+Package `@shan8851/companies-house-cli`, binary `ch`. Node.js 22+. Homepage: https://github.com/shan8851/companies-house-cli
 
 Company search and discovery, profiles, officers, filing history, persons with significant control (PSC), charges and insolvency, from the Companies House Public Data API.
 

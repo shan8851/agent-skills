@@ -1,6 +1,6 @@
 # rail: National Rail live boards
 
-Package `@shan8851/rail-cli`, binary `rail`. Node.js 22+. Homepage: https://rail-cli.xyz
+Package `@shan8851/rail-cli`, binary `rail`. Node.js 22+. Homepage: https://github.com/shan8851/rail-cli
 
 Live departures and arrivals for every National Rail station in Great Britain, plus station-name search. Data comes from National Rail's Darwin feed (the Live Departure Boards web service, LDBWS) through a Huxley2 proxy.
 
