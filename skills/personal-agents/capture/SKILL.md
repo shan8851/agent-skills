@@ -1,6 +1,6 @@
 ---
 name: capture
-description: Clean up and save dictated, rambling or quick notes into the user's own notes folder, keeping their voice and meaning, then confirm in one line once the save is verified. Use when the user dictates a thought, journal entry, update or idea with no question attached, or says "save this", "note that…", "jot this down", "add to my notes", "log this", "brain dump", or "remind me later that…" (as a note, not a scheduled alert).
+description: Clean up and save dictated, rambling or quick notes into the user's own notes folder, keeping their voice and meaning, then confirm in one line once the save is verified. Use when the user dictates a thought, journal entry, update or idea with no question attached, or says "save this", "note that…", "jot this down", "add to my notes", "log this", "brain dump", "remember that I…" (a fact about their life, not a rule for the agent), or "remind me later that…" (as a note, not a scheduled alert).
 ---
 
 # Capture
@@ -36,7 +36,7 @@ This is the first of three skills that work together: **capture** saves notes, *
 
 1. **Decide it's a capture.** Apply "When to use" above. If it's mixed, split off the question for later.
 2. **Check for a retry.** If the message looks like a resend (same text, a "did that save?"), search recent notes first. Don't create the same entry twice. A genuine follow-up on the same topic is not a duplicate.
-3. **Choose a home.** Look at the existing folder structure and reuse it. Don't design a taxonomy. In order of preference:
+3. **Choose a home** inside the user's notes folder (see "Find the notes folder first" below). Look at the existing folder structure and reuse it. Don't design a taxonomy. In order of preference:
    - an existing note on the same topic (append a dated entry);
    - an existing folder that fits (for example `journal/`, `work/`, `projects/<name>/`);
    - the **inbox** (`inbox.md` at the notes root, created on first use) when unsure. The inbox is always a valid answer.
@@ -61,7 +61,9 @@ No recap, encouragement, advice or follow-up question. If it failed: `Not saved:
 
 Assume nothing exists except a folder you can write to. Paths here are examples.
 
-- **Plain folder (works anywhere):** a `notes/` folder with `inbox.md` and `journal/`. Create them on first use.
+**Find the notes folder first.** Use the folder the user has named, or the one recorded in agent memory. If neither exists, ask once where their notes live and save the answer to agent memory, so `capture`, `recall` and `reflect` all use the same folder in every session and project. Only create a new `notes/` folder if the user agrees.
+
+- **Plain folder (works anywhere):** a `notes/` folder with `inbox.md` and `journal/`. Once the user has agreed on the folder, create them on first use.
 - **Claude Code:** notes can be a folder like `notes/` or an Obsidian vault. If you keep a dedicated notes project, consider making capture the default there with a line in that project's `CLAUDE.md`, for example: *"In this project, treat any message that's dictation, a thought dump or an update (no question or task) as a capture: use the capture skill without asking."* Optional; without it, capture only runs when asked.
 - **Codex:** the same idea, with the default-capture line in `AGENTS.md`.
 - **OpenClaw / Hermes and similar self-hosted agents:** notes often live in a `dumps/` or `notes/` folder in the workspace, alongside `MEMORY.md`. If a message is routed from a chat channel, the channel is a source detail, not a filing rule.

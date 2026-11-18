@@ -1,6 +1,6 @@
 ---
 name: memory-curation
-description: Decide what the agent should keep in its long-term memory file, write it as short dated entries, update rather than duplicate, and tell the user what changed. Use when the user says "remember this", "remember that I prefer…", "from now on…", "don't forget…", "update your memory", "forget that", or when running a memory checkpoint, tidying memory, or consolidating daily notes into long-term memory.
+description: Decide what the agent should keep in its long-term memory (preferences, standing rules and stable facts that change how it behaves next time), write it as short dated entries, update rather than duplicate, and tell the user what changed. Use when the user says "remember that I prefer…", "from now on…", "always/never do X", "remember this" or "don't forget…" about how the agent should work, "update your memory", "forget that", or when running a memory checkpoint, tidying memory, or consolidating daily notes into long-term memory.
 ---
 
 # Memory curation
@@ -17,7 +17,7 @@ This is about the **agent's** memory (for example `MEMORY.md` or `CLAUDE.md`). T
 
 ## Do not use
 
-- The user is dictating a note about their life or work. Use `capture`.
+- The user is dictating a note about their life or work, or asks you to remember an event, plan or fact about their life ("remember I'm seeing Sam on Friday"). That's a note: use `capture`. If it's ambiguous, ask which they mean.
 - The user is asking what they decided. Use `recall`.
 
 ## Rules that matter most
@@ -38,6 +38,8 @@ This is about the **agent's** memory (for example `MEMORY.md` or `CLAUDE.md`). T
 5. **Verify** by reading back the changed lines.
 6. **Report** in the output format.
 
+When consolidating daily memory, leave the daily files as they are: they're the record. Long-term memory gets the promoted line; don't delete or rewrite the daily entry it came from.
+
 ## Output format
 
 Only include the lines that apply. One line per item.
@@ -53,10 +55,10 @@ If your platform uses a silent-reply token for background checkpoints (for examp
 
 ## Adapting to your setup
 
-Assume nothing exists. If there's no memory file yet, create one where the platform will load it at session start. Paths are examples.
+Assume nothing exists. If the platform has its own memory feature, use it: write where and how it expects, and apply this skill's rules (filter, no secrets, update not duplicate, report) on top. Don't keep a second memory file alongside it. If there's no memory at all yet, create a file where the platform will load it at session start. Paths are examples.
 
 - **Plain setup:** `MEMORY.md` for long-term memory; optional `memory/YYYY-MM-DD.md` for short-term.
-- **Claude Code:** long-term memory is `CLAUDE.md` (project or user level) or auto-memory if enabled. Keep entries in a `## Memory` section so they don't mix with project instructions. Periodic checkpoints can be a scheduled task.
+- **Claude Code:** if auto-memory is on, use it (a `MEMORY.md` index plus one file per memory in the project's memory folder) and follow its format. Otherwise, personal preferences go in your user-level `~/.claude/CLAUDE.md`, or `CLAUDE.local.md` for one project, never the project `CLAUDE.md`: that file is usually committed and shared with a team. Keep entries in a `## Memory` section so they don't mix with instructions. Periodic checkpoints can be a scheduled task.
 - **Codex:** `AGENTS.md`, in a dedicated section.
 - **OpenClaw / Hermes and similar:** `MEMORY.md` plus daily `memory/YYYY-MM-DD.md` files; checkpoints often run on cron.
 
