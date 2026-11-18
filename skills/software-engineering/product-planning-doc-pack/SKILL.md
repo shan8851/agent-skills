@@ -43,7 +43,7 @@ planning-docs/
 
 Optional: `eval-plan.md` for AI or model-heavy products; `research-notes.md` when outside research shaped decisions.
 
-Add `planning-docs/` to `.gitignore` by default, for new and existing repos, unless the user wants the pack committed. It keeps working plans out of the project's real docs. Use `agent-guidance.md` instead of editing a root `AGENTS.md` or `CLAUDE.md`, unless the repo owner asks.
+Commit `planning-docs/` by default, so `agent-guidance.md` and the plan reach future contributors, other machines and cloud agents. If the repo has a reason to keep working plans out (for example a public repo with private plans), ask once whether to gitignore it instead. Use `agent-guidance.md` instead of editing a root `AGENTS.md` or `CLAUDE.md`, unless the repo owner asks.
 
 ## Process
 
@@ -108,7 +108,7 @@ After writing the pack, reply with:
 
 ## Final checklist
 
-- [ ] Files are under `planning-docs/`, gitignored unless the user asked otherwise.
+- [ ] Files are under `planning-docs/`, committed unless the user chose to gitignore them.
 - [ ] The product thesis is one sharp sentence.
 - [ ] Target users or actors are specific.
 - [ ] v1 scope and non-goals are explicit.
