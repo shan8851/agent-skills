@@ -1,6 +1,6 @@
 # Agent Skills
 
-A small set of skills I actually use with coding agents and personal agents (Claude Code, Codex, OpenClaw and others). Each one encodes a process a plain prompt usually wouldn't follow. Use them as a starting point and adapt them to your own setup.
+A small set of skills I actually use with coding agents and personal agents (Claude Code, Codex, OpenClaw and others). Each one encodes a process a plain prompt usually wouldn't follow. They're lifted from my own setup and generalised: most work out of the box, but some assume things about how I work (where notes live, how I plan, how I write), so read a skill before installing it and adapt it to yours.
 
 ## Structure
 
